@@ -50,7 +50,7 @@
 					<tr>
 						<td>profileHash</td>
 						<td></td>
-						<td>profileHash</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>profileSalt</td>
