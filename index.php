@@ -105,7 +105,7 @@
 				<hr/>
 				<table>
 					<thead>
-						<th colspan="3"><strong>clap</strong> (Entity)</th>
+						<th> colspan="3"><strong>clap</strong> (Entity)</th>
 					</thead>
 					<tr>
 						<th>attributeName (entityAttribute:)</th>
@@ -127,10 +127,6 @@
 						<td>Foreign Key</td>
 						<td>relationship to blog entity: 1-to-n = blog-to-clap (each blog can have n claps)</td>
 					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
 				</table>
 
 				<p>Note: the clap entity is an intermediary table between the member table and the blog table. It allows for a m-to-n relationship, by having 1-to-n relationships with both member and blog. This site allows members to clap multiple times for a single blog, so this is required,since each member can give a different number of claps. it is NOT the same as a "like" in Facebook</p>
