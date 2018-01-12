@@ -99,7 +99,7 @@
 					<tr>
 						<td>blogDate</td>
 						<td></td>
-						<td></td>
+						<td>date and time</td>
 					</tr>
 				</table>
 				<hr/>
