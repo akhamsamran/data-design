@@ -1,0 +1,28 @@
+/*this is for the border of the tables*/
+td {
+	border: 1px solid black;
+}
+/*this is for the top row and first column of the tables*/
+th {
+	background-color: lightgray;
+}
+/*this controls the divs*/
+div {
+	font-family: "Futura Bk BT";
+}
+/*this is for the sole lonely h1 at the top of the page, it is bolder than the rest of the font, to stand out*/
+h1 {
+	font-family: "Futura Md BT";
+}
+/*this is for the h2*/
+h2{
+	background-color: #a4bdf7;
+}
+/*obviously these are styles for the h3*/
+h3 {
+	background-color: #e2ebf7;
+}
+/*yes, it is the p section of the html, there is not much of this, but just in case*/
+p {
+	font-family: "Century Gothic";
+}
