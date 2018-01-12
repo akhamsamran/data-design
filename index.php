@@ -326,7 +326,7 @@
 					<li><strong>System Response 2</strong> Medium opens a box in which she can write or cut and paste her article, with an area for title and for content.</li>
 					<li><strong>User Action 3</strong> Alicia enters her article, with title and content.</li>
 					<li><strong>System Response 3</strong> Medium saves her article and displays it for other members to read.</li>
-					<li><strong>User Action 4</strong>Alicia clicks the logout button.</li>
+					<li><strong>User Action 4</strong> Alicia clicks the logout button.</li>
 					<li><strong>System Response 4</strong> Medium logs Alicia out.</li>
 				</ul>
 
