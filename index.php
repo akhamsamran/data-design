@@ -19,9 +19,9 @@
 				<!--the entity tables below each have space for up to 10 attributes. In the case that there are less, rows can be deleted, but no more should be added to a table, as each entity should have not more than 10 attributes.  Copy and paste a whole table when more are needed, delete the ones that are not needed.-->
 				<hr/>
 				<table>
-					<thead>
+					<tr>
 						<th colspan="3"><strong>profile</strong> (Entity)</th>
-					</thead>
+					</tr>
 					<tr>
 						<th>attributeName:(entityAttribute)</th>
 						<th>PrimaryKey:</th>
@@ -63,33 +63,14 @@
 						<td></td>
 						<td></td>
 					</tr>
-					<!-- this part of the table is currently unused...
-					<tr>
-						<td>TD 8 1</td>
-						<td>TD 8 2</td>
-						<td>TD 8 3</td>
-					</tr>
-					<tr>
-						<td>TD 9 1</td>
-						<td>TD 9 2</td>
-						<td>TD 9 3</td>
-					</tr>
-					<tr>
-						<td>TD 10 1</td>
-						<td>TD 10 2</td>
-						<td>TD 10 3</td>
-					</tr>
-					-->
 				</table>
-
-				<p>note: used the name "member" because this is the name that the website uses for its users/bloggers</p>
 				<!--The tables were running into each other, so I added the horizontal break between each of them, just to distinguish them from each other-->
 				<hr/>
 
 				<table>
-					<thead>
+					<tr>
 						<th colspan="3"><strong>blog</strong> (Entity)</th>
-					</thead>
+					</tr>
 					<tr>
 						<th>attributeName (entityAttribute:)</th>
 						<th>PrimaryKey:</th>
@@ -120,100 +101,8 @@
 						<td></td>
 						<td></td>
 					</tr>
-					<!-- this part of the table is currently unused...
-					<tr>
-						<td>TD 6 1</td>
-						<td>TD 6 2</td>
-						<td>TD 6 3</td>
-					</tr>
-					<tr>
-						<td>TD 7 1</td>
-						<td>TD 7 2</td>
-						<td>TD 7 3</td>
-					</tr>
-					<tr>
-						<td>TD 8 1</td>
-						<td>TD 8 2</td>
-						<td>TD 8 3</td>
-					</tr>
-					<tr>
-						<td>TD 9 1</td>
-						<td>TD 9 2</td>
-						<td>TD 9 3</td>
-					</tr>
-					<tr>
-						<td>TD 10 1</td>
-						<td>TD 10 2</td>
-						<td>TD 10 3</td>
-					</tr>
-					-->
-				</table>
-
-				<hr/>
-				<!--
-				<table>
-					<thead>
-						<th colspan="3"><strong>response</strong> (Entity) </th>
-					</thead>
-					<tr>
-						<th>attributeName (entityAttribute:)</th>
-						<th>PrimaryKey:</th>
-						<th>Note:</th>
-					</tr>
-					<tr>
-						<td>responseId</td>
-						<td>Primary Key</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>responseMember</td>
-						<td>Foreign Key</td>
-						<td>relationship to member entity: 1-to-many = member-to-response</td>
-					</tr>
-					<tr>
-						<td>responseDate</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>responseHeadline</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>responseContent</td>
-						<td></td>
-						<td></td>
-					</tr>
-					this part of the table is currently unused...
-					<tr>
-						<td>TD 6 1</td>
-						<td>TD 6 2</td>
-						<td>TD 6 3</td>
-					</tr>
-					<tr>
-						<td>TD 7 1</td>
-						<td>TD 7 2</td>
-						<td>TD 7 3</td>
-					</tr>
-					<tr>
-						<td>TD 8 1</td>
-						<td>TD 8 2</td>
-						<td>TD 8 3</td>
-					</tr>
-					<tr>
-						<td>TD 9 1</td>
-						<td>TD 9 2</td>
-						<td>TD 9 3</td>
-					</tr>
-					<tr>
-						<td>TD 10 1</td>
-						<td>TD 10 2</td>
-						<td>TD 10 3</td>
-					</tr>
 				</table>
 				<hr/>
-				-->
 				<table>
 					<thead>
 						<th colspan="3"><strong>clap</strong> (Entity)</th>
@@ -242,39 +131,6 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<!-- this part of the table is currently unused...
-						</tr>
-						<tr>
-							<td>TD 5 1</td>
-							<td>TD 5 2</td>
-							<td>TD 5 3</td>
-						</tr>
-						<tr>
-							<td>TD 6 1</td>
-							<td>TD 6 2</td>
-							<td>TD 6 3</td>
-						</tr>
-						<tr>
-							<td>TD 7 1</td>
-							<td>TD 7 2</td>
-							<td>TD 7 3</td>
-						</tr>
-						<tr>
-							<td>TD 8 1</td>
-							<td>TD 8 2</td>
-							<td>TD 8 3</td>
-						</tr>
-						<tr>
-							<td>TD 9 1</td>
-							<td>TD 9 2</td>
-							<td>TD 9 3</td>
-						</tr>
-						<tr>
-							<td>TD 10 1</td>
-							<td>TD 10 2</td>
-							<td>TD 10 3</td>
-						</tr>
-						-->
 				</table>
 
 				<p>Note: the clap entity is an intermediary table between the member table and the blog table. It allows for a m-to-n relationship, by having 1-to-n relationships with both member and blog. This site allows members to clap multiple times for a single blog, so this is required,since each member can give a different number of claps. it is NOT the same as a "like" in Facebook</p>
@@ -306,7 +162,7 @@
 				</ul>
 
 				<h3>User Story</h3>
-				<h4><em> As a member of Medium, I want to post articles</h4>
+				<h4>As a member of Medium, I want to post articles</h4>
 				<p></p>
 				<h3>Use Case</h3>
 				<ul>
