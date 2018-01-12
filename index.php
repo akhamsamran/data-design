@@ -105,7 +105,7 @@
 				<hr/>
 				<table>
 					<tr>
-						<th> colspan="3"><strong>clap</strong> (Entity)</th>
+						<th colspan="3"><strong>clap</strong> (Entity)</th>
 					</tr>
 					<tr>
 						<th>attributeName (entityAttribute:)</th>
@@ -130,6 +130,7 @@
 				</table>
 
 				<p>Note: the clap entity is an intermediary table between the member table and the blog table. It allows for a m-to-n relationship, by having 1-to-n relationships with both member and blog. This site allows members to clap multiple times for a single blog, so this is required,since each member can give a different number of claps. it is NOT the same as a "like" in Facebook</p>
+				<p>Relationship Note: Profile has a many to many relationship with articles through claps: a profle can clap multiple times for multiple blogs.  However, the clap has 1 to many relationships with both blog and profile</p>
 			</div>
 			<hr/>
 			<!--this <div> is to hold all the front-end items. enter the "answer" or the information following the </strong> for each category. The "name of each required item is in <strong> bold, and the answers should be regular.  This is just a stylistic idea to distinguish question from answer, but is not required.-->
