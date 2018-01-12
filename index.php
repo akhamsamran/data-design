@@ -104,9 +104,9 @@
 				</table>
 				<hr/>
 				<table>
-					<thead>
+					<tr>
 						<th> colspan="3"><strong>clap</strong> (Entity)</th>
-					</thead>
+					</tr>
 					<tr>
 						<th>attributeName (entityAttribute:)</th>
 						<th>PrimaryKey:</th>
