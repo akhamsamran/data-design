@@ -13,7 +13,7 @@
 			<p>1/10/2018 Anna Khamsamran</p>
 			<!-- this <div> is to hold the Backend Entities/Attributes and keep it separate from the frontend stuff-->
 			<div>
-				<h2>Entities & Attributes</h2>
+				<h2>Entities and Attributes</h2>
 				<!--the <p> below is to enter information about what website/app this is about, or notes on the project-->
 				<p>Here is a first-attempt to grok <em>Medium</em> blog website</p>
 				<!--the entity tables below each have space for up to 10 attributes. In the case that there are less, rows can be deleted, but no more should be added to a table, as each entity should have not more than 10 attributes.  Copy and paste a whole table when more are needed, delete the ones that are not needed.-->
@@ -282,24 +282,27 @@
 			<hr/>
 			<!--this <div> is to hold all the front-end items. enter the "answer" or the information following the </strong> for each category. The "name of each required item is in <strong> bold, and the answers should be regular.  This is just a stylistic idea to distinguish question from answer, but is not required.-->
 			<div>
-				<h2>Personas, Use Cases, & Interaction Flow</h2>
+				<h2>Personas, Use Cases, and Interaction Flow</h2>
 				<h3>Persona:</h3>
 				<ul>
 					<li><strong>Name</strong>: Alicia</li>
 					<li><strong>Personality</strong>: Confident, adventurous, kind. Wants to share her adventures and save the world</li>
 					<li><strong>Gender</strong>: Female</li>
 					<li><strong>Age</strong>: 24</li>
-					<li><strong>Technology</strong>: Comfortable with Windows, Mac and Android</li>
-					<ul>
+					<li><strong>Technology</strong>: Comfortable with Windows, Mac and Android
+						<ul>
 						<li><strong>Device</strong> Samsung Galaxy 7 phone, macbook pro (2011)</li>
 						<li><strong>Proficiency</strong> Feels highly competent on all technology, learns new tech fast</li>
 						<li><strong>Love/Hate</strong> Loves it!  Checks Instagram and Facebook daily. Shares photos, texts, calls, emails.</li>
-					</ul>
-					<li><strong>Attitudes & Needs</strong></li>
-					<ul>
-						<li><strong>What need does this person have?</strong> She needs a blogging platform with a seamless, beautiful interface where she can post her articles from her travels and share with other hikers</li>
-						<li><strong>Why choose your site over other options?</strong> Medium is beautiful, easy for her family back home to use, and allows commenting, and highlighting directly within the text of the article.</li>
-					</ul>
+						</ul>
+					</li>
+					<li><strong>Attitudes and Needs</strong>
+						<ul>
+							<li><strong>What need does this person have?</strong> She needs a blogging platform with a seamless, beautiful interface where she can post her articles from her travels and share with other hikers</li>
+
+							<li><strong>Why choose your site over other options?</strong> Medium is beautiful, easy for her family back home to use, and allows commenting, and highlighting directly within the text of the article.</li>
+						</ul>
+					</li>
 				</ul>
 
 				<h3>User Story</h3>
