@@ -187,10 +187,10 @@
 			<!--here's a div for my ERD:-->
 			<div>
 				<h2>ERD for <em>Medium</em> website</h2>
-
+				<object type="image/svg+xml" data="images/erd-medium.svg" alt="image of ERD">
+				</object>
 			</div>
 
 		</main>
-
 	</body>
 </html>
