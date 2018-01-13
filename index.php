@@ -182,6 +182,10 @@
 					<li><strong>User Action 4</strong> Alicia clicks the logout button.</li>
 					<li><strong>System Response 4</strong> Medium logs Alicia out.</li>
 				</ul>
+			</div>
+
+			<!--here's a div for my ERD:-->
+			<div>
 
 			</div>
 
