@@ -186,6 +186,7 @@
 
 			<!--here's a div for my ERD:-->
 			<div>
+				<h2>ERD for <em>Medium</em> website</h2>
 
 			</div>
 
