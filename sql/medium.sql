@@ -21,13 +21,36 @@ CREATE TABLE profile(
 -- this is the table for blog:
 CREATE TABLE blog(
 -- this is the attribute for primary key:
-	blogId BINARY (16) NOT NULL,
+	blogId BINARY(16) NOT NULL,
 -- here are the rest of the attributes for blog entity:
-	blogTitle VARCHAR (128) NOT NULL,
-	blogContent VARCHAR (65335) NOT NULL,
-	blogDate TIMESTAMP (8) NOT NULL,
+	blogTitle VARCHAR(128) NOT NULL,
+	blogContent VARCHAR(65335) NOT NULL,
+	blogDate TIMESTAMP(8) NOT NULL,
+	blogProfileId BINARY(16) NOT NULL,
 	-- here is the unique index:
 	UNIQUE (blogId),
-	-- assigned Primary Key:
+	-- index foreign key:
+	INDEX(blogProfileId),
+	-- create foreign keys and reference/relationship:
+	FOREIGN KEY(blogProfileId) REFERENCES profile(profileId),
+	-- assign Primary Key:
 	PRIMARY KEY(blogId)
+);
+
+-- this is the table for clap:
+CREATE TABLE clap(
+	-- this is the attribute for primary key. I need to find out if this really needs to be BINARY(16), as claps don't really need a UTF number, couldn't they just be an autoincrementing INT or BIGINT?:
+	clapId BINARY(16) NOT NULL,
+	-- other attributes for clap:
+	clapProfileId BINARY(16) NOT NULL,
+	clapBlogId BINARY(16) NOT NULL,
+	-- set unique index:
+	UNIQUE (clapId),
+	INDEX(clapProfileId),
+	INDEX(clapBlogId),
+	-- create foreign keys and relationships:
+	FOREIGN KEY (clapProfileId) REFERENCES profile(profileId),
+	FOREIGN KEY (clapBlogId) REFERENCES blog(blogId),
+	-- create primary key:
+	PRIMARY KEY (clapID)
 );
