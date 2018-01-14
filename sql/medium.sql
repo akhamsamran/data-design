@@ -1,4 +1,4 @@
--- set database collation to UTF-8
+-- set database collation to UTF-8 (had to check box in "schemas" in setup)
 ALTER DATABASE akhamsamran1 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- this is the table for profile:
