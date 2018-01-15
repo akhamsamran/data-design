@@ -188,7 +188,7 @@
 			<div>
 				<h2>ERD for <em>Medium</em> website</h2>
 				<!--I used an <object> tag to add this svg image to the page, since this was the most recommended option on https://www.sitepoint.com/add-svg-to-web-page/ If you intend using any advanced SVG features such as CSS and scripting, the HTML5 <object> tag is your best option"-->
-				<img src="images/erd-sm.png" alt="Image ERD" />
+				<img src="images/erd-sm.png" alt="Image ERD (small)" />
 			</div>
 
 		</main>
