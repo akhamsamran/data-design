@@ -24,7 +24,7 @@ CREATE TABLE blog(
 	blogId BINARY(16) NOT NULL,
 	-- this is the attribute for foreign key:
 	blogProfileId BINARY(16) NOT NULL,
--- here are the rest of the attributes for blog entity:
+	-- here are the rest of the attributes for blog entity:
 	blogTitle VARCHAR(128) NOT NULL,
 	blogContent VARCHAR(65335) NOT NULL,
 	blogDate TIMESTAMP(8) NOT NULL,
