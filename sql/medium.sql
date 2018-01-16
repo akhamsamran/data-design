@@ -26,6 +26,7 @@ CREATE TABLE blog(
 	blogProfileId BINARY(16) NOT NULL,
 	-- here are the rest of the attributes for blog entity:
 	blogTitle VARCHAR(128) NOT NULL,
+	-- this gives an error as being too large and to use blob or text instead.  had to make it smaller
 	blogContent VARCHAR(65335) NOT NULL,
 	blogDate TIMESTAMP(8) NOT NULL,
 	-- here is the unique index:
