@@ -74,9 +74,22 @@ VALUES UNHEX(REPLACE ('e6bb6b29-52e5-4b00-956b-a67cf5246bbe', '-', '')), 'Jean-L
 
 -- change my profileId for person lastname Khamsamran (when working with UUID's you have to use the entire "UNHEX(REPLACE" string:
 UPDATE profile
-SET profileId=UNHEX(REPLACE('a401e9efe1b541c6a428205a3452f4a8', '-', ''))
+SET profileId=UNHEX(REPLACE('a401e9ef-e1b5-41c6-a428-205a3452f4a8', '-', ''))
 WHERE profileLastName = 'Khamsamran';
+
+UPDATE profile
+SET profileId=UNHEX(REPLACE('6cd70bf17-5774-75ca-44a5-c42662b575f', '-', ''))
+WHERE profileLastName = 'Gilmore';
 
 -- to see the profileId's from profile:
 SELECT profileId
 FROM profile;
+
+
+SELECT profileId, profileFirstName, profileLastName, profileEmail
+FROM profile
+WHERE <filter expression>
+
+-- add missing attribute for activation token to table, profile:
+ALTER TABLE profile
+	ADD profileActivationToken CHAR(32);
