@@ -1,7 +1,6 @@
--- set database collation to UTF-8 (had to check box in "schemas" in setup)
 ALTER DATABASE akhamsamran1 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
--- this is the table for profile:
+-- profile table:
 CREATE TABLE profile(
 	-- here is attribute for primary key:
 	profileId BINARY(16) NOT NULL,
@@ -26,9 +25,8 @@ CREATE TABLE blog(
 	blogProfileId BINARY(16) NOT NULL,
 	-- here are the rest of the attributes for blog entity:
 	blogTitle VARCHAR(128) NOT NULL,
-	-- this gives an error as being too large and to use blob or text instead.  had to make it smaller
-	blogContent VARCHAR(65335) NOT NULL,
-	blogDate TIMESTAMP(8) NOT NULL,
+	blogContent VARCHAR(1000) NOT NULL,
+	blogDate TIMESTAMP(6) NOT NULL,
 	-- here is the unique index:
 	UNIQUE (blogId),
 	-- index foreign key:
@@ -51,8 +49,20 @@ CREATE TABLE clap(
 	INDEX(clapProfileId),
 	INDEX(clapBlogId),
 	-- create foreign keys and relationships:
-	FOREIGN KEY (clapProfileId) REFERENCES profile(profileId),
-	FOREIGN KEY (clapBlogId) REFERENCES blog(blogId),
+	FOREIGN KEY(clapProfileId) REFERENCES profile(profileId),
+	FOREIGN KEY(clapBlogId) REFERENCES blog(blogId),
 	-- create primary key:
 	PRIMARY KEY (clapID)
 );
+
+-- insert info into table profile. note-cannot enter UUID, so used random#instead(also don't know what salt and hash should be so used 12345):
+INSERT INTO profile(profileId, profileFirstName, profileLastName, profileEmail, profileHash, profileSalt)
+VALUES(12345, 'Anna', 'Khamsamran', 'akhamsamran@gmail.com', 12345, 12345);
+INSERT INTO profile(profileId, profileFirstName, profileLastName, profileEmail, profileHash, profileSalt)
+VALUES(1234555, 'Elizabeth', 'Gilmore', 'bettyg@gmail.com', 12345, 12345);
+
+-- delete info from table profile:
+DELETE FROM profile
+WHERE profileID=1234555;
+DELETE FROM profile
+WHERE profileEmail='bettyg@gmail.com';
