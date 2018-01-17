@@ -71,6 +71,12 @@ WHERE profileEmail='bettyg@gmail.com';
 INSERT INTO profile(profileId, profileFirstName, profileLastName, profileEmail, profileHash, profileSalt)
 VALUES UNHEX(REPLACE ('e6bb6b29-52e5-4b00-956b-a67cf5246bbe', '-', '')), 'Jean-Luc', 'Picard', 'jlpicard@starfleet.go.us',12345,12345);
 
+
+-- change my profileId for person lastname Khamsamran (when working with UUID's you have to use the entire "UNHEX(REPLACE" string:
 UPDATE profile
-	SET profileID = UNHEX(REPLACE('a401e9efe1b541c6a428205a3452f4a8', '-', '')),
-	WHERE profileID = 12345;
+SET profileId=UNHEX(REPLACE('a401e9efe1b541c6a428205a3452f4a8', '-', ''))
+WHERE profileLastName = 'Khamsamran';
+
+-- to see the profileId's from profile:
+SELECT profileId
+FROM profile;
