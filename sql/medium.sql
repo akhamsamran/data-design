@@ -66,3 +66,11 @@ DELETE FROM profile
 WHERE profileID=1234555;
 DELETE FROM profile
 WHERE profileEmail='bettyg@gmail.com';
+
+-- use UNHEX REPLACE to convert UUID into BINARY, and remove dashes:
+INSERT INTO profile(profileId, profileFirstName, profileLastName, profileEmail, profileHash, profileSalt)
+VALUES UNHEX(REPLACE ('e6bb6b29-52e5-4b00-956b-a67cf5246bbe', '-', '')), 'Jean-Luc', 'Picard', 'jlpicard@starfleet.go.us',12345,12345);
+
+UPDATE profile
+	SET profileID = UNHEX(REPLACE('a401e9efe1b541c6a428205a3452f4a8', '-', '')),
+	WHERE profileID = 12345;
