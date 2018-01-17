@@ -61,11 +61,15 @@ VALUES(12345, 'Anna', 'Khamsamran', 'akhamsamran@gmail.com', 12345, 12345);
 INSERT INTO profile(profileId, profileFirstName, profileLastName, profileEmail, profileHash, profileSalt)
 VALUES(1234555, 'Elizabeth', 'Gilmore', 'bettyg@gmail.com', 12345, 12345);
 
--- delete info from table profile:
+-- delete whole rows from table profile:
 DELETE FROM profile
 WHERE profileID=1234555;
+
 DELETE FROM profile
 WHERE profileEmail='bettyg@gmail.com';
+
+DELETE FROM profile
+WHERE profileLastName = 'Gilmore';
 
 -- use UNHEX REPLACE to convert UUID into BINARY, and remove dashes:
 INSERT INTO profile(profileId, profileFirstName, profileLastName, profileEmail, profileHash, profileSalt)
@@ -81,10 +85,16 @@ UPDATE profile
 SET profileId=UNHEX(REPLACE('6cd70bf17-5774-75ca-44a5-c42662b575f', '-', ''))
 WHERE profileLastName = 'Gilmore';
 
+UPDATE profile
+SET profileFirstName='Ace-K'
+WHERE profileFirstName='Anna';
+
 -- to see the profileId's from profile:
 SELECT profileId
 FROM profile;
 
+SELECT blogContent
+FROM blog;
 
 SELECT profileId, profileFirstName, profileLastName, profileEmail
 FROM profile
@@ -93,3 +103,17 @@ WHERE <filter expression>
 -- add missing attribute for activation token to table, profile:
 ALTER TABLE profile
 	ADD profileActivationToken CHAR(32);
+
+-- increased character count from 1000 to 10000:
+ALTER TABLE blog
+	MODIFY blogContent VARCHAR(10000);
+
+-- join
+SELECT clapProfileId, profileId
+	FROM clap
+	INNER JOIN profile ON profile.profileId = clap.clapProfileId
+	WHERE clapId = UNHEX(REPLACE('3345d41a-541e-482a-9dcb-a0f545f3dabc', '-', ''));
+
+-- what do I put in for foreign key for the blogProfileId?
+INSERT INTO blog(blogId, blogProfileId, blogTitle, blogContent)
+	VALUE(UNHEX(REPLACE('3345d41a-541e-482a-9dcb-a0f545f3dabc', '-', '')), what goes here for foreign key?, 'My Favorite Cupcake', 'Cupcake ipsum dolor sit amet wafer candy carrot cake. Apple pie chocolate sesame snaps pastry biscuit cookie cake marzipan. Cheesecake liquorice sweet roll jelly sweet roll. Fruitcake fruitcake bonbon cookie pastry dessert chocolate cake cookie topping.');
