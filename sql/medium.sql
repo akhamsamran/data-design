@@ -114,6 +114,6 @@ SELECT clapProfileId, profileId
 	INNER JOIN profile ON profile.profileId = clap.clapProfileId
 	WHERE clapId = UNHEX(REPLACE('3345d41a-541e-482a-9dcb-a0f545f3dabc', '-', ''));
 
--- what do I put in for foreign key for the blogProfileId?
+-- what do I put in for foreign key for the blogProfileId-OKAY-use the whole unhex thingy for the profle who wrote it:
 INSERT INTO blog(blogId, blogProfileId, blogTitle, blogContent)
-	VALUE(UNHEX(REPLACE('3345d41a-541e-482a-9dcb-a0f545f3dabc', '-', '')), what goes here for foreign key?, 'My Favorite Cupcake', 'Cupcake ipsum dolor sit amet wafer candy carrot cake. Apple pie chocolate sesame snaps pastry biscuit cookie cake marzipan. Cheesecake liquorice sweet roll jelly sweet roll. Fruitcake fruitcake bonbon cookie pastry dessert chocolate cake cookie topping.');
+	VALUE(UNHEX(REPLACE('3345d41a-541e-482a-9dcb-a0f545f3dabc', '-', '')), UNHEX(REPLACE('a401e9ef-e1b5-41c6-a428-205a3452f4a8', '-', '')), 'My Favorite Cupcake', 'Cupcake ipsum dolor sit amet wafer candy carrot cake. Apple pie chocolate sesame snaps pastry biscuit cookie cake marzipan. Cheesecake liquorice sweet roll jelly sweet roll. Fruitcake fruitcake bonbon cookie pastry dessert chocolate cake cookie topping.');
