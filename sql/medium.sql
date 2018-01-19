@@ -118,15 +118,20 @@ SELECT clapProfileId, profileId
 	INNER JOIN profile ON profile.profileId = clap.clapProfileId
 	WHERE clapId = UNHEX(REPLACE('3345d41a-541e-482a-9dcb-a0f545f3dabc', '-', ''));
 
- -- in order to do the following join, you must first INSERT the data in the clap table:
-SELECT clapProfileId, profileId
-	FROM clap
-	INNER JOIN profile ON profile.profileId = clap.clapProfileId
-	WHERE clapId = UNHEX(REPLACE('47f35df0-bff8-46b4-b669-0f15a3dae3c4', '-', ''));
--- here is the stuff to insert in the clap table:
-INSERT INTO clap(clapId, clapProfileId, clapBlogId) SELECT
-	VALUES (UNHEX(REPLACE('47f35df0-bff8-46b4-b669-0f15a3dae3c4', '-', '')), UNHEX(REPLACE('a401e9ef-e1b5-41c6-a428-205a3452f4a8', '-', ''));
 
 
 INSERT INTO blog(blogId,blogProfileId,blogTitle,blogContent)
-VALUES (UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', ''), UNHEX(REPLACE('e6bb6b29-52e5-4b00-956b-a67cf5246bbe', '-', '')), 'Spaceships for Dummies', 'Unidentified vessel travelling at sub warp speed, bearing 235.7. Fluctuations in energy readings from it, Captain. All transporters off. A strange set-up, but I''d say the graviton generator is depolarized. The dark colourings of the scrapes are the leavings of natural rubber, a type of non-conductive sole used by researchers experimenting with electricity. The molecules must have been partly de-phased by the anyon beam.');
+VALUES (UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', '')), UNHEX(REPLACE('e6bb6b29-52e5-4b00-956b-a67cf5246bbe', '-', '')), 'Spaceships for Dummies', 'Unidentified vessel travelling at sub warp speed, bearing 235.7. Fluctuations in energy readings from it, Captain. All transporters off. A strange set-up, but I''d say the graviton generator is depolarized. The dark colourings of the scrapes are the leavings of natural rubber, a type of non-conductive sole used by researchers experimenting with electricity. The molecules must have been partly de-phased by the anyon beam.');
+
+-- here is the stuff to insert in the clap table:
+INSERT INTO clap(clapId, clapProfileId, clapBlogId)
+VALUES (UNHEX(REPLACE('47f35df0-bff8-46b4-b669-0f15a3dae3c4', '-', '')),
+		  UNHEX(REPLACE('a401e9ef-e1b5-41c6-a428-205a3452f4a8', '-', '')),
+		  UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', '')));
+
+
+-- in order to do the following join, you must first INSERT the data in the clap table:
+SELECT clapProfileId, profileId
+FROM clap
+	INNER JOIN profile ON profile.profileId = clap.clapProfileId
+WHERE clapId = UNHEX(REPLACE('47f35df0-bff8-46b4-b669-0f15a3dae3c4', '-', ''));
