@@ -67,18 +67,25 @@ class Profile implements \JsonSerializable {
 	 * @param string/Uuid $profileId id of this Profile
 	 * @param string $profileFirstName string containing the first name of the Profile
 	 * @param string $profileLastName string containing the last name of the Profile
+	 * @param string $profileEmail string containing the Email of the Profile
+	 * @param string $profileHash string containing the Hash of the Profile
+	 *@param string $profileSalt string containing the Salt of the Profile
+	 * @param string $profileActivationToken string containing the Activation Token of the Profile
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newProfileId, $newTweetProfileId, string $newTweetContent, $newTweetDate = null) {
+	public function __construct($newProfileId, string $newProfileFirstName,$newProfileLastName, $newProfileEmail,$newProfileHash,$newProfileSalt,$newProfileActivationToken, {
 		try {
-			$this->setTweetId($newTweetId);
-			$this->setTweetProfileId($newTweetProfileId);
-			$this->setTweetContent($newTweetContent);
-			$this->setTweetDate($newTweetDate);
+			$this->setProfileId($newProfileId);
+			$this->setProfileFirstName($newProfileFirstName);
+			$this->setProfileLastName($newProfileLastName);
+			$this->setProfileEmail($newProfileEmail);
+			$this->setProfileHash($newProfileHash);
+			$this->setProfileSalt($newProfileSalt);
+			$this->setProfileActivationToken($newProfileActivationToken);
 		}
 			//determine what exception type was thrown
 		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -111,16 +118,16 @@ class Profile implements \JsonSerializable {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 
-		// convert and store the tweet id
+		// convert and store the profile id
 		$this->profileId = $uuid;
 	}
 
 	/**
-	 * accessor method for tweet profile id
+	 * accessor method for profile id
 	 *
 	 * @return Uuid value of profile id
 	 **/
-	public function getTweetProfileId() : Uuid{
+	public function getProfileId() : Uuid{
 		return($this->profileId);
 	}
 
@@ -153,45 +160,13 @@ class Profile implements \JsonSerializable {
 
 		// verify the profile first name will fit in the database
 		if(strlen($newProfileFirstName) > 50) {
-			throw(new \RangeException("tweet content too large"));
+			throw(new \RangeException("profile first name too large"));
 		}
 
 		// store the profile first name
 		$this->profileFirstName = $newProfileFirstName;
 	}
 
-	/**
-	 * accessor method for tweet date
-	 *
-	 * @return \DateTime value of tweet date
-	 **/
-	public function getTweetDate() : \DateTime {
-		return($this->tweetDate);
-	}
-
-	/**
-	 * mutator method for tweet date
-	 *
-	 * @param \DateTime|string|null $newTweetDate tweet date as a DateTime object or string (or null to load the current time)
-	 * @throws \InvalidArgumentException if $newTweetDate is not a valid object or string
-	 * @throws \RangeException if $newTweetDate is a date that does not exist
-	 **/
-	public function setTweetDate($newTweetDate = null) : void {
-		// base case: if the date is null, use the current date and time
-		if($newTweetDate === null) {
-			$this->tweetDate = new \DateTime();
-			return;
-		}
-
-		// store the like date using the ValidateDate trait
-		try {
-			$newTweetDate = self::validateDateTime($newTweetDate);
-		} catch(\InvalidArgumentException | \RangeException $exception) {
-			$exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
-		}
-		$this->tweetDate = $newTweetDate;
-	}
 
 	/**
 	 * inserts this Tweet into mySQL
