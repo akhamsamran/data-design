@@ -25,10 +25,6 @@ class blog {
 	 **/
 	private $blogProfileId;
 	/**
-	 * title for the blog
-	 **/
-	private $blogTitle;
-	/**
 	 * content of the blog
 	 **/
 	private $blogContent;
@@ -36,6 +32,10 @@ class blog {
 	 * date the blog was submitted
 	 **/
 	private $blogDate;
+	/**
+	 * title for the blog
+	 **/
+	private $blogTitle;
 	/**
 	 *accessor method for blog id
 	 *
@@ -73,7 +73,7 @@ class blog {
 	 * mutator method for blog profile id
 	 *
 	 * @param  Uuid/string $newBlogProfileId new value of blog profile id
-	 * * @throws RangeException if $newProfileId is not positive
+	 * @throws RangeException if $newProfileId is not positive
 	 * @throws TypeError if $newTweetProfileId is not an integer
 	 **/
 	public function setBlogProfileId( $newBlogProfileId) : void {
@@ -83,9 +83,43 @@ class blog {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-
 		// convert and store the profile id
 		$this->tweetProfileId = $uuid;
+	}
+	/**
+	 * accessor method for blog title
+	 *
+	 * @returns string $blogTitle
+	 **/
+	public function getBlogTitle() {
+		return $this->blogTitle;
+	}
+	/**
+	 * mutator method for blog title
+	 *
+	 * @param string $newBlogTitle new value for new blog title
+	 * @throws InvalidArgumentException if $newBlogTitle is not a string or insecute
+	 * @throws RangeException if $newBlogTitle is > 128 characters
+	 * @throws TypeError if $newBlogTitle is not a string
+	 **/
+	public function setBlogTitle(string $newBlogTitle) : void {
+		//verify the blog title is secture
+		$newBlogTitle = trim($newBlogTitle);
+		$newBlogTitle = filter_var($newBlogTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newBlogTitle) === true) {
+			throw(new InvalidArgumentException("Title empty or insecure"));
+		}
+		//verify the new blog title will fit in the database
+		if(strlen($newBlogTitle) > 128) {
+			throw(new RangeException("title too long"));
+		}
+		//convert and store the blog title
+		$this->blogTitle = $newBlogTitle;
+		/**
+		 * accessor method for blog content
+		 */
+
+
 	}
 
 
