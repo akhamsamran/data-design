@@ -9,10 +9,10 @@
 /**
  * Typical profile for a bloging or article sharing website like Medium
  *
- * This profile is an abbvreviated example of a profile of a user of a blogging website, including ID, name, hash, and salt...other attributes specific to the person can be added as required, for example contact info//etc.
+ * This profile is an abbvreviated example of a profile of a user of a blogging website, including ID, name, hash, and salt...other attributes specific to the person can be added as required, for example contact info, etc.
  *
  * @author Anna Khamsamran <akhamsamran1@cnm.edu>
- * @see Dylan McDonald <dmcdonald21@cnm.edu>(writing a class)
+ * @author Dylan McDonald <dmcdonald21@cnm.edu>
  *
  **/
 class Profile {
@@ -27,7 +27,7 @@ class Profile {
 	/**
 	 * access token for the profile
 	 **/
-	private $accessToken;
+	private $profileAccessToken;
 	/**
 	 * email for the profile
 	 **/
@@ -37,22 +37,46 @@ class Profile {
 	 **/
 	private $profileFirstName;
 	/**
-	 * last name of the profile
-	 **/
-	private $profileLastName;
-	/**
 	 * hash for the profile
 	 **/
 	private $profileHash;
 	/**
+	 * last name of the profile
+	 **/
+	private $profileLastName;
+	/**
 	 * salt for the profile
-	 */
+	 **/
+	private $profileSalt;
 
-
-
-
-
-
+	/**
+	 * constructor for this profile
+	 *
+	 * @param int $newProfileId new profile id
+	 * @param string $newProfileAboutMe
+	 * @param string $newProfileAccessToken
+	 * @param string $newProfileEmail
+	 * @param string $newProfileFirstName
+	 * @param string $newProfileHash
+	 * @param string $newProfileLastName
+	 * @param String $newProfileSalt
+	 * @throws UnexpectedValueException if any of the parameters are invalid
+	 **/
+	public function __construct($newProfileId, $newProfileAboutMe, $newProfileAccessToken, $newProfileEmail,$newProfileFirstName, $newProfileHash, $newProfileLastName, $newProfileSalt) {
+		try{
+			$this->setProfileId($newProfileId);
+			$this->setProfileAboutMe($newProfileAboutMe);
+			$this->profileAccessToken($newProfileAccessToken);
+			$this->profileEmail($newProfileEmail);
+			$this->profileFirstName($newProfileFirstName);
+			$this->profileHash($newProfileHash);
+			$this->profileLastName($newProfileLastName);
+			$this->profileSalt($newProfileSalt);
+		} catch(UnexpectedValueException $exception){
+			//rethrow to the caller
+		throw(new UnexpectedValueException("Unable to construct Profile", 0, $exception));
+		}
+	}
 
 
 }
