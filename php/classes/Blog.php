@@ -48,8 +48,8 @@ class blog {
 	 * mutator method for blog id
 	 *
 	 * @param Uuid /string $newBlogId for the new value of the blog id
-	 * @throws InvalidArgumentException if $newBlogId is not positive
-	 * @throws TypeError if $newBlogId is not an integer
+	 * @throws \InvalidArgumentException if $newBlogId is not positive
+	 * @throws \TypeError if $newBlogId is not an integer
 	 **/
 	public function setBlogId($newBlogId): void {
 		try {
@@ -73,8 +73,8 @@ class blog {
 	 * mutator method for blog profile id
 	 *
 	 * @param  Uuid/string $newBlogProfileId new value of blog profile id
-	 * @throws RangeException if $newProfileId is not positive
-	 * @throws TypeError if $newTweetProfileId is not an integer
+	 * @throws \RangeException if $newProfileId is not positive
+	 * @throws \TypeError if $newTweetProfileId is not an integer
 	 **/
 	public function setBlogProfileId( $newBlogProfileId) : void {
 		try {
@@ -101,42 +101,58 @@ class blog {
 	 * mutator method for blog content
 	 *
 	 * @param string $newBlogContent new value of blog content
-	 * @throws InvalidArgumentException if $newBlogContent is not a string or insecure
-	 * @throws RangeException if $newBlogContent is >20000 characters
-	 * @throws TypeError if $newBlogContent is not a string
+	 * @throws \InvalidArgumentException if $newBlogContent is not a string or insecure
+	 * @throws \RangeException if $newBlogContent is >20000 characters
+	 * @throws \TypeError if $newBlogContent is not a string
 	 */
 	public function setBlogContent(string $newBlogContent) : void {
 		//verify the new blog content is secure
 		$newBlogContent = trim($newBlogContent);
 		$newBlogContent = filter_var($newBlogContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if (empty($newBlogContent)===true) {
-			throw(new InvalidArgumentException("content invalid or insecure"));
+			throw(new \InvalidArgumentException("content invalid or insecure"));
 		}
 		//verify blog content will fit in the database
 		if(strlen($newBlogContent) > 20000) {
-			throw(new RangeException("content is too large"));
+			throw(new \RangeException("content is too large"));
 		}
 		//convert and store new blog content
 		$this->BlogContent = $newBlogContent;
 	}
 	/**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	 * accessor method for blog date
+	 *
+	 * @returns \DateTime value for blog date
+	 */
+	/**
+	 * @return mixed
+	 */
+	public function getBlogDate() {
+		return $this->blogDate;
+	}
+	/**
+	 * mutator method for blog date
+	 *
+	 * @param \DateTime|string|null $newBlogDate tweet date as a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newBlogDate is not a valid object or string
+	 * @throws \RangeException if $newBlogDate is a date that does not exist
+	 **/
+	public function setBlogDate($newBlogDate = null) : void {
+		// base case: if the date is null, use the current date and time
+		if($newBlogDate === null) {
+			$this->blogDate = new \DateTime();
+			return;
+		}
+		// store the like date using the ValidateDate trait
+		try {
+			$newBlogDate = self::validateDateTime($newBlogDate);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		//stores the blog date
+		$this->tweetDate = $newBlogDate;
+	}
 	/**
 	 * accessor method for blog title
 	 *
@@ -149,28 +165,23 @@ class blog {
 	 * mutator method for blog title
 	 *
 	 * @param string $newBlogTitle new value for new blog title
-	 * @throws InvalidArgumentException if $newBlogTitle is not a string or insecure
-	 * @throws RangeException if $newBlogTitle is > 128 characters
-	 * @throws TypeError if $newBlogTitle is not a string
+	 * @throws \InvalidArgumentException if $newBlogTitle is not a string or insecure
+	 * @throws \RangeException if $newBlogTitle is > 128 characters
+	 * @throws \TypeError if $newBlogTitle is not a string
 	 **/
 	public function setBlogTitle(string $newBlogTitle) : void {
 		//verify the blog title is secure
 		$newBlogTitle = trim($newBlogTitle);
 		$newBlogTitle = filter_var($newBlogTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newBlogTitle) === true) {
-			throw(new InvalidArgumentException("Title empty or insecure"));
+			throw(new \InvalidArgumentException("Title empty or insecure"));
 		}
 		//verify the new blog title will fit in the database
 		if(strlen($newBlogTitle) > 128) {
-			throw(new RangeException("title too long"));
+			throw(new \RangeException("title too long"));
 		}
 		//convert and store the blog title
 		$this->blogTitle = $newBlogTitle;
-		/**
-		 * accessor method for blog content
-		 */
-
-
 	}
 
 
