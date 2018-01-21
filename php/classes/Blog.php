@@ -23,6 +23,21 @@ class blog{
 	 * id for the profile author of the blog, this is a foreign key
 	 **/
 	private $blogProfileId;
+	/**
+	 * title for the blog
+	 **/
+	private $blogTitle;
+	/**
+	 * content of the blog
+	 **/
+	private $blogContent;
+	/**
+	 * date the blog was submitted
+	 **/
+	private $blogDate;
+	/**
+	 *
+	 */
 
 
 
