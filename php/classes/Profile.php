@@ -184,7 +184,7 @@ class Profile {
 		}
 		//verify the first name will fit in the database
 		if(strlen($newProfileFirstName) > 50) {
-			throw(new RangeException("First name too long"))
+			throw(new RangeException("First name too long"));
 		}
 		//convert and store profile first name
 		$this->profileFirstName = $newProfileFirstName;
@@ -246,7 +246,7 @@ class Profile {
 		}
 		//verify the last name will fit in the database
 		if(strlen($newProfileLastName) > 50) {
-			throw(new RangeException("First name too long"))
+			throw(new RangeException("First name too long"));
 		}
 		//convert and store profile last name
 		$this->profileLastName = $newProfileLastName;
