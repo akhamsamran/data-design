@@ -105,7 +105,7 @@ class Profile {
 	/**
 	 * mutator method for profile access token
 	 *
-	 * @param string ?$newProfileActivationToken new value of access token
+	 * @param string $newProfileActivationToken new value of access token
 	 * @throws UnexpectedValueException if $newProfileActivationToken is not a string
 	 **/
 	public function setProfileActivationToken($newProfileActivationToken) {
@@ -114,7 +114,53 @@ class Profile {
 			throw(new UnexpectedValueException("Activation token is not a valid string"));
 		}
 		//convert and store profile activation token
-		$this->profileActivationToken = $newProfileActivationToken
+		$this->profileActivationToken = $newProfileActivationToken;
+	}
+
+	/**
+	 * accessor method for profile email
+	 *
+	 * @returns string value of profile email
+	 **/
+	public function getProfileEmail() {
+		return($this->profileEmail);
+	}
+	/**
+ 	* mutator method for profile email
+	 *
+	 * @param string $newProfileEmail new value of profile email
+	 * @throws UnexpectedValueException if $newProfileEmail is not a string
+	 **/
+	public function setProfileEmail($newProfileEmail) {
+		$newProfileEmail = filter_var($newProfileEmail, FILTER_SANITIZE_STRING);
+		if($newProfileEmail === false) {
+			throw(new UnexpectedValueException("Email is not a valid string"));
+		}
+		//convert and store profile email
+		$this->profileEmail = $newProfileEmail;
+	}
+
+	/**
+	 * profile accessor method for profile first name
+	 *
+	 * @returns string value of profile first name
+	 */
+	public function getProfileFirstName() {
+		return($this->profileFirstName)
+	}
+	/**
+	 * mutator method for profile first name
+	 *
+	 * @param string $newProfileFirstName new profile first name
+	 * @throws UnexpectedValueException if $newProfileFirstName is not a string
+	 */
+	public function setProfileFirstName($newProfileFirstName) {
+		$newProfileFirstName = filter_var($newProfileFirstName, FILTER_SANITIZE_STRING);
+		if($newProfileFirstName === false) {
+			throw(new UnexpectedValueException("First name is not a string"));
+		}
+		//convert and store profile first name
+		$this->profileFirstName = $newProfileFirstName;
 	}
 
 
