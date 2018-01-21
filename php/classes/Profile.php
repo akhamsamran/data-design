@@ -143,9 +143,9 @@ class Profile {
  	* mutator method for profile email
 	 *
 	 * @param string $newProfileEmail new value of profile email
-	 * @throws UnexpectedValueException if $newProfileEmail is not a string
-	 * @throws RangeException if $newEmail is > 128 characters
-	 * @throws TypeError if $newEmail is not a string
+	 * @throws UnexpectedValueException if $newProfileEmail is not a valid email or insecure
+	 * @throws RangeException if $newProfileEmail is > 128 characters
+	 * @throws TypeError if $newProfileEmail is not a string
 	 **/
 	public function setProfileEmail(string $newProfileEmail): void {
 		// verify the email is secure
@@ -175,11 +175,16 @@ class Profile {
 	 *
 	 * @param string $newProfileFirstName new profile first name
 	 * @throws UnexpectedValueException if $newProfileFirstName is not a string
+	 * @throws UnexpectedValueException if $newProfileFirstName is >50 characters
 	 */
 	public function setProfileFirstName($newProfileFirstName) {
 		$newProfileFirstName = filter_var($newProfileFirstName, FILTER_SANITIZE_STRING);
 		if($newProfileFirstName === false) {
 			throw(new UnexpectedValueException("First name is not a string"));
+		}
+		//verify the first name will fit in the database
+		if(strlen($newProfileFirstName) > 50) {
+			throw(new RangeException("First name too long"))
 		}
 		//convert and store profile first name
 		$this->profileFirstName = $newProfileFirstName;
@@ -231,12 +236,17 @@ class Profile {
 	 * mutator method for profile last name
 	 *
 	 * @param string $newProfileLastName
-	 * @throws InvalidArgumentException if the profile last name is not a string
+	 * @throws InvalidArgumentException if the $newProfileLastName is not a
+	 * @throws RangeException if the $newProfileLastName is > 50 characters
 	 */
 	public function setProfileLastName(string $newProfileLastName) {
 		$newProfileLastName = filter_var($newProfileLastName, FILTER_SANITIZE_STRING);
 		if ($newProfileLastName === false) {
 			throw(new InvalidArgumentException("Last name is not a string"));
+		}
+		//verify the last name will fit in the database
+		if(strlen($newProfileLastName) > 50) {
+			throw(new RangeException("First name too long"))
 		}
 		//convert and store profile last name
 		$this->profileLastName = $newProfileLastName;
