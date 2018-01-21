@@ -18,6 +18,7 @@
 class Profile {
 	/**
 	 * id for this Profile; this is the primary key
+	 * this is a unique index
 	 **/
 	private $profileId;
 	/**
