@@ -87,6 +87,57 @@ class blog {
 		$this->tweetProfileId = $uuid;
 	}
 	/**
+	 * accessor method for blog content
+	 *
+	 * @returns string value for blog content
+	 */
+	/**
+	 * @return mixed
+	 */
+	public function getBlogContent() {
+		return $this->blogContent;
+	}
+	/**
+	 * mutator method for blog content
+	 *
+	 * @param string $newBlogContent new value of blog content
+	 * @throws InvalidArgumentException if $newBlogContent is not a string or insecure
+	 * @throws RangeException if $newBlogContent is >20000 characters
+	 * @throws TypeError if $newBlogContent is not a string
+	 */
+	public function setBlogContent(string $newBlogContent) : void {
+		//verify the new blog content is secure
+		$newBlogContent = trim($newBlogContent);
+		$newBlogContent = filter_var($newBlogContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if (empty($newBlogContent)===true) {
+			throw(new InvalidArgumentException("content invalid or insecure"));
+		}
+		//verify blog content will fit in the database
+		if(strlen($newBlogContent) > 20000) {
+			throw(new RangeException("content is too large"));
+		}
+		//convert and store new blog content
+		$this->BlogContent = $newBlogContent;
+	}
+	/**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * accessor method for blog title
 	 *
 	 * @returns string $blogTitle
@@ -98,12 +149,12 @@ class blog {
 	 * mutator method for blog title
 	 *
 	 * @param string $newBlogTitle new value for new blog title
-	 * @throws InvalidArgumentException if $newBlogTitle is not a string or insecute
+	 * @throws InvalidArgumentException if $newBlogTitle is not a string or insecure
 	 * @throws RangeException if $newBlogTitle is > 128 characters
 	 * @throws TypeError if $newBlogTitle is not a string
 	 **/
 	public function setBlogTitle(string $newBlogTitle) : void {
-		//verify the blog title is secture
+		//verify the blog title is secure
 		$newBlogTitle = trim($newBlogTitle);
 		$newBlogTitle = filter_var($newBlogTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newBlogTitle) === true) {
