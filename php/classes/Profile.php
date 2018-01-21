@@ -147,10 +147,16 @@ class Profile {
 	 * @throws RangeException if $newEmail is > 128 characters
 	 * @throws TypeError if $newEmail is not a string
 	 **/
-	public function setProfileEmail($newProfileEmail) {
-		$newProfileEmail = filter_var($newProfileEmail, FILTER_SANITIZE_STRING);
-		if($newProfileEmail === false) {
-			throw(new UnexpectedValueException("Email is not a valid string"));
+	public function setProfileEmail(string $newProfileEmail): void {
+		// verify the email is secure
+		$newProfileEmail = trim($newProfileEmail);
+		$newProfileEmail = filter_var($newProfileEmail, FILTER_VALIDATE_EMAIL);
+		if(empty($newProfileEmail) === true) {
+			throw(new \InvalidArgumentException("profile email is empty or insecure"));
+		}
+		// verify the email will fit in the database
+		if(strlen($newProfileEmail) > 128) {
+			throw(new \RangeException("profile email is too large"));
 		}
 		//convert and store profile email
 		$this->profileEmail = $newProfileEmail;
