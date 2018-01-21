@@ -14,7 +14,7 @@ class Clap {
 	/**
 	 * add use validate Uuid.php
 	 **/
-	use \Edu\Cnm\DataDesign\ValidateUuid
+	use \Edu\Cnm\DataDesign\ValidateUuid;
 	/**
 	* id for this clap, this is the primary key
 	* this is a unique index
@@ -23,11 +23,11 @@ class Clap {
 	/**
 	* id for the blog to which the clap is given, this is a foreign key
 	**/
-	private $clapBlogId
+	private $clapBlogId;
 	/**
 	* id for the profile who gave the clap, this is a foreign key
 	**/
-	private $clapProfileId
+	private $clapProfileId;
 
 
 
