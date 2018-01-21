@@ -139,7 +139,7 @@ class Profile {
 	/**
 	 * accessor method for profile email
 	 *
-	 * @returns string value of profile email
+	 * @return string value of profile email
 	 **/
 	public function getProfileEmail() {
 		return($this->profileEmail);
@@ -170,7 +170,7 @@ class Profile {
 	/**
 	 * profile accessor method for profile first name
 	 *
-	 * @returns string value of profile first name
+	 * @return string value of profile first name
 	 */
 	public function getProfileFirstName() {
 		return($this->profileFirstName);
@@ -198,7 +198,7 @@ class Profile {
 	/**
 	 * access method for profile hash
 	 *
-	 * @returns string value of profile hash
+	 * @return string value of profile hash
 	 **/
 	public function getProfileHash() {
 		return($this->profileHash);
@@ -232,7 +232,7 @@ class Profile {
 	/**
 	 * accessor method for profile last name
 	 *
-	 * @returns string value of profile last name
+	 * @return string value of profile last name
 	 */
 	public function getProfileLastName() {
 		return ($this->profileLastName);

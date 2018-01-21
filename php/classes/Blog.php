@@ -44,7 +44,7 @@ class blog {
 	/**
 	 *accessor method for blog id
 	 *
-	 * @returns Uuid string value for blog id
+	 * @return Uuid string value for blog id
 	 **/
 	public function getBlogId() {
 		return $this->blogId;
@@ -69,7 +69,7 @@ class blog {
 	/**
 	 * accessor method for blog profile id
 	 *
-	 * @returns int $newBlogProfileId
+	 * @return int $newBlogProfileId
 	 */
 	public function getBlogProfileId() {
 		return $this->blogProfileId;
@@ -94,7 +94,7 @@ class blog {
 	/**
 	 * accessor method for blog content
 	 *
-	 * @returns string value for blog content
+	 * @return string value for blog content
 	 */
 	/**
 	 * @return mixed
@@ -127,7 +127,7 @@ class blog {
 	/**
 	 * accessor method for blog date
 	 *
-	 * @returns \DateTime value for blog date
+	 * @return \DateTime value for blog date
 	 */
 	/**
 	 * @return mixed
@@ -161,7 +161,7 @@ class blog {
 	/**
 	 * accessor method for blog title
 	 *
-	 * @returns string $blogTitle
+	 * @return string $blogTitle
 	 **/
 	public function getBlogTitle() {
 		return $this->blogTitle;
