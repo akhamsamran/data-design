@@ -14,7 +14,7 @@
  * @see Dylan McDonald <dmcdonald21@cnm.edu>
  *
  **/
-class blog{
+class blog {
 	/**
 	 * id for this blog, this is the primary key
 	 * this is a unique index
@@ -98,4 +98,4 @@ class blog{
 
 }
 
-/?>
+?>
