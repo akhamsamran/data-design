@@ -11,7 +11,7 @@
  * this blog contains all the articles or blogs written by the members listed in the profile.  Blog includes title, blog content, Date, and the author.  Other information could be added, such as topics, subtitles, etc.
  *
  * @author Anna Khamsamran <akhamsamran1@cnm.edu>
- * @see Dylan McDonald <dmcdonald21@cnm.edu>
+ * @author Dylan McDonald <dmcdonald21@cnm.edu>
  *
  **/
 class blog {
