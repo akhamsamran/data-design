@@ -17,6 +17,10 @@
  **/
 class Profile {
 	/**
+	 * add use validate Uuid.php
+	 **/
+	use \Edu\Cnm\DataDesign\ValidateUuid
+	/**
 	 * id for this Profile; this is the primary key
 	 * this is a unique index
 	 **/
