@@ -44,7 +44,7 @@ class blog {
 	/**
 	 *accessor method for blog id
 	 *
-	 * @returns string value for blog id
+	 * @returns Uuid string value for blog id
 	 **/
 	public function getBlogId() {
 		return $this->blogId;

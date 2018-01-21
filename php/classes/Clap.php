@@ -28,6 +28,11 @@ class Clap {
 	* id for the profile who gave the clap, this is a foreign key
 	**/
 	private $clapProfileId;
+	/**
+	 * accessor method for clap id
+	 *
+	 * @returns Uuid/string value for the value of clap id
+	 */
 
 
 

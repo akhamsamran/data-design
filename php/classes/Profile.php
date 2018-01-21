@@ -57,7 +57,7 @@ class Profile {
 	/**
 	 * accessor method for profile id
 	 *
-	 * @return int value of profile id
+	 * @return Uuid value of profile id
 	 **/
 	public function getProfileId(){
 		return($this->profileId);
@@ -66,8 +66,8 @@ class Profile {
 	/**
 	 * mutator method for profile id
 	 *
-	 * @param int $newProfileId new value of profile id
-	 * @throws UnexpectedValueException if $newProfileId is not an integer
+	 * @param Uuid/string $newProfileId new value of profile id
+	 * @throws \UnexpectedValueException if $newProfileId is not an integer
 	 * @throws \RangeException if $newProfileId is not positive
 	 * @throws \TypeError if the profile Id is not
 	 **/
@@ -93,7 +93,7 @@ class Profile {
 	 * mutator method for profile about me
 	 *
 	 * @param string $newProfileAboutMe new value of profile about me
-	 * @throws UnexpectedValueException if $newProfileAboutMe is not a string
+	 * @throws \UnexpectedValueException if $newProfileAboutMe is not a string
 	 **/
 	public function setProfileAboutMe($newProfileAboutMe) {
 		$newProfileAboutMe = filter_var($newProfileAboutMe, FILTER_SANITIZE_STRING);
@@ -148,9 +148,9 @@ class Profile {
  	* mutator method for profile email
 	 *
 	 * @param string $newProfileEmail new value of profile email
-	 * @throws UnexpectedValueException if $newProfileEmail is not a valid email or insecure
-	 * @throws RangeException if $newProfileEmail is > 128 characters
-	 * @throws TypeError if $newProfileEmail is not a string
+	 * @throws \UnexpectedValueException if $newProfileEmail is not a valid email or insecure
+	 * @throws \RangeException if $newProfileEmail is > 128 characters
+	 * @throws \TypeError if $newProfileEmail is not a string
 	 **/
 	public function setProfileEmail(string $newProfileEmail): void {
 		// verify the email is secure
@@ -179,17 +179,17 @@ class Profile {
 	 * mutator method for profile first name
 	 *
 	 * @param string $newProfileFirstName new profile first name
-	 * @throws UnexpectedValueException if $newProfileFirstName is not a string
-	 * @throws UnexpectedValueException if $newProfileFirstName is >50 characters
+	 * @throws \UnexpectedValueException if $newProfileFirstName is not a string
+	 * @throws \UnexpectedValueException if $newProfileFirstName is >50 characters
 	 */
 	public function setProfileFirstName($newProfileFirstName) {
 		$newProfileFirstName = filter_var($newProfileFirstName, FILTER_SANITIZE_STRING);
 		if($newProfileFirstName === false) {
-			throw(new UnexpectedValueException("First name is not a string"));
+			throw(new \UnexpectedValueException("First name is not a string"));
 		}
 		//verify the first name will fit in the database
 		if(strlen($newProfileFirstName) > 50) {
-			throw(new RangeException("First name too long"));
+			throw(new \RangeException("First name too long"));
 		}
 		//convert and store profile first name
 		$this->profileFirstName = $newProfileFirstName;
@@ -207,9 +207,9 @@ class Profile {
 	 * mutator method for profile hash
 	 *
 	 * @param string $newProfileHash
-	 * @throws InvalidArgumentException if the hash is not secure
-	 * @throws RangeException if the hash is not 128 characters
-	 * @throws TypeError if profile hash is not a string
+	 * @throws \InvalidArgumentException if the hash is not secure
+	 * @throws \RangeException if the hash is not 128 characters
+	 * @throws \TypeError if profile hash is not a string
 	 */
 	public function setProfileHash(string $newProfileHash): void {
 		//enforce that the hash is properly formatted
@@ -241,17 +241,17 @@ class Profile {
 	 * mutator method for profile last name
 	 *
 	 * @param string $newProfileLastName
-	 * @throws InvalidArgumentException if the $newProfileLastName is not a
-	 * @throws RangeException if the $newProfileLastName is > 50 characters
+	 * @throws \InvalidArgumentException if the $newProfileLastName is not a
+	 * @throws \RangeException if the $newProfileLastName is > 50 characters
 	 */
 	public function setProfileLastName(string $newProfileLastName) {
 		$newProfileLastName = filter_var($newProfileLastName, FILTER_SANITIZE_STRING);
 		if ($newProfileLastName === false) {
-			throw(new InvalidArgumentException("Last name is not a string"));
+			throw(new \InvalidArgumentException("Last name is not a string"));
 		}
 		//verify the last name will fit in the database
 		if(strlen($newProfileLastName) > 50) {
-			throw(new RangeException("First name too long"));
+			throw(new \RangeException("First name too long"));
 		}
 		//convert and store profile last name
 		$this->profileLastName = $newProfileLastName;
@@ -268,9 +268,9 @@ class Profile {
 	 * mutator method for profile salt
 	 *
 	 * @param string $newProfileSalt
-	 * @throws InvalidArgumentException if the salt is not secure
-	 * @throws RangeException if the salt is not 64 characters
-	 * @throws TypeError if the profile salt isn't a string
+	 * @throws \InvalidArgumentException if the salt is not secure
+	 * @throws \RangeException if the salt is not 64 characters
+	 * @throws \TypeError if the profile salt isn't a string
 	 */
 	public function setProfileSalt(string $newProfileSalt): void {
 		//enforce that the salt is properly formatted
