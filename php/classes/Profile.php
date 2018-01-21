@@ -20,14 +20,14 @@ use Ramsey\Uuid\Uuid;
  *
  *
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
- * @author Anna Khamsamran
+ * @author Anna Khamsamran <akhamsamran1@cnm.edu>
  * @version 3.0.0
  **/
 class Profile implements \JsonSerializable {
 	use ValidateDate;
 	use ValidateUuid;
 	/**
-	 * id for this Profile; this is the primary key
+	 * id for this Profile(person); this is the primary key
 	 * @var Uuid $profileId
 	 **/
 	private $profileId;
@@ -395,3 +395,4 @@ class Profile implements \JsonSerializable {
 		return($fields);
 	}
 }
+?>
