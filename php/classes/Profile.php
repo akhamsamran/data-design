@@ -209,6 +209,59 @@ class Profile {
 		//store the hash
 		$this->profileHash = $newProfileHash;
 	}
+	/**
+	 * accessor method for profile last name
+	 *
+	 * @returns string value of profile last name
+	 */
+	public function getProfileLastName() {
+		return ($this->profileLastName);
+	}
+	/**
+	 * mutator method for profile last name
+	 *
+	 * @param string $newProfileLastName
+	 * @throws InvalidArgumentException if the profile last name is not a string
+	 */
+	public function setProfileLastName(string $newProfileLastName) {
+		$newProfileLastName = filter_var($newProfileLastName, FILTER_SANITIZE_STRING);
+		if ($newProfileLastName === false) {
+			throw(new InvalidArgumentException("Last name is not a string"));
+		}
+		//convert and store profile last name
+		$this->profileLastName = $newProfileLastName;
+	}
+	/**
+	 *accessor method for profile salt
+	 *
+	 * @return string representation of the salt hexadecimal
+	 */
+	public function getProfileSalt(): string {
+		return $this->profileSalt;
+	}
+	/**
+	 * mutator method for profile salt
+	 *
+	 * @param string $newProfileSalt
+	 * @throws InvalidArgumentException if the salt is not secure
+	 * @throws RangeException if the salt is not 64 characters
+	 * @throws TypeError if the profile salt isn't a string
+	 */
+	public function setProfileSalt(string $newProfileSalt): void {
+		//enforce that the salt is properly formatted
+		$newProfileSalt = trim($newProfileSalt);
+		$newProfileSalt = strtolower($newProfileSalt);
+		//enforce that the salt is a string representation of a hexadecimal
+		if(!ctype_xdigit($newProfileSalt)) {
+			throw(new \InvalidArgumentException("profile password hash is empty or insecure"));
+		}
+		//enforce that the salt is exactly 64 characters.
+		if(strlen($newProfileSalt) !== 64) {
+			throw(new \RangeException("profile salt must be 128 characters"));
+		}
+		//store the salt
+		$this->profileSalt = $newProfileSalt;
+	}
 
 
 
