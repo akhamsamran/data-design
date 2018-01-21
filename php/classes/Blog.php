@@ -18,8 +18,8 @@ class blog {
 	/**
 	 * add validate date and validate uuid
 	 **/
-	use \Edu\Cnm\DataDesign\ValidateUuid
-	use \Edu\Cnm\DataDesign\ValidateDate
+	use \Edu\Cnm\DataDesign\ValidateUuid;
+	use \Edu\Cnm\DataDesign\ValidateDate;
 	/**
 	 * id for this blog, this is the primary key
 	 * this is a unique index
