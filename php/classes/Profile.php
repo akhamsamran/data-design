@@ -63,16 +63,20 @@ class Profile {
 	 *
 	 * @param int $newProfileId new value of profile id
 	 * @throws UnexpectedValueException if $newProfileId is not an integer
+	 * @throws \RangeException if $newProfileId is not positive
+	 * @throws \TypeError if the profile Id is not
 	 **/
-	public function setProfileId($newProfileId){
-		$newProfileId = filter_var($newProfileId, FILTER_VALIDATE_INT);
-		if($newProfileId === false) {
-			throw(new UnexpectedValueException("profile id is not a valid integer"));
+	public function setProfileId( $newProfileId): void {
+		try {
+			$uuid = self::validateUuid($newProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-		//convert and store the profile id
-		$this->profileId = intval($newProfileId);
-	}
-	/**
+		// convert and store the profile id
+		$this->profileId = $uuid;
+
+	}	/**
 	 * accessor method for profile about me
 	 *
 	 * @return string value of profile about me
