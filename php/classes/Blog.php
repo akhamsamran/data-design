@@ -77,9 +77,9 @@ class blog {
 	/**
 	 * mutator method for blog profile id
 	 *
-	 * @param  Uuid/string $newBlogProfileId new value of blog profile id
-	 * @throws \RangeException if $newProfileId is not positive
-	 * @throws \TypeError if $newTweetProfileId is not an integer
+	 *@param  Uuid/string $newBlogProfileId new value of blog profile id
+	 *@throws \RangeException if $newProfileId is not positive
+	 *@throws \TypeError if $newTweetProfileId is not an integer
 	 **/
 	public function setBlogProfileId( $newBlogProfileId) : void {
 		try {
