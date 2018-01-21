@@ -71,6 +71,9 @@ WHERE profileEmail='bettyg@gmail.com';
 DELETE FROM profile
 WHERE profileLastName = 'Gilmore';
 
+DELETE FROM profile
+WHERE profileFirstName="Ace-K";
+
 -- use UNHEX REPLACE to convert UUID into BINARY, and remove dashes:
 INSERT INTO profile(profileId, profileFirstName, profileLastName, profileEmail, profileHash, profileSalt)
 VALUES UNHEX(REPLACE ('e6bb6b29-52e5-4b00-956b-a67cf5246bbe', '-', '')), 'Jean-Luc', 'Picard', 'jlpicard@starfleet.go.us',12345,12345);
@@ -90,8 +93,10 @@ SET profileId=UNHEX(REPLACE('6cd70bf17-5774-75ca-44a5-c42662b575f', '-', ''))
 WHERE profileLastName = 'Gilmore';
 
 UPDATE profile
-SET profileFirstName='Ace-K'
-WHERE profileFirstName='Anna';
+SET profileFirstName='Anna'
+WHERE profileId=UNHEX(REPLACE('a401e9ef-e1b5-41c6-a428-205a3452f4a8', '-', ''));
+
+
 
 -- to see the profileId's from profile:
 SELECT profileId
@@ -107,6 +112,9 @@ WHERE <filter expression>
 -- add missing attribute for activation token to table, profile:
 ALTER TABLE profile
 	ADD profileActivationToken CHAR(32);
+-- add missing attribute for activation token to table, profile
+ALTER TABLE profile
+	ADD profileAboutMe VARCHAR(500);
 
 -- increased character count from 1000 to 10000:
 ALTER TABLE blog
