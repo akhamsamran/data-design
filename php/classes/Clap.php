@@ -31,8 +31,80 @@ class Clap {
 	/**
 	 * accessor method for clap id
 	 *
-	 * @returns Uuid/string value for the value of clap id
-	 */
+	 * @return Uuid/string value for the value of clap id
+	 **/
+	public function getClapId() {
+		return $this->clapId;
+	}
+	/**
+	 * mutator method for clap id
+	 *
+	 * @param Uuid/string $newClapId for the new value of the clap id
+	 * @throws \InvalidArgumentException if $newClapId is not positive
+	 * @throws \TypeError if $newClapId is not an integer
+	 **/
+	public function setClapId($newClapId): void {
+		try {
+			$uuid = self::validateUuid($newClapId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		// store and convert the clap id
+		$this->clapId = $uuid;
+	}
+	/**
+	 * accessor method for clap blog id
+	 *
+	 * @return Uuid/string value for the value of clap blog id
+	 **/
+	public function getClapBlogId() {
+		return $this->clapBlogId;
+	}
+	/**
+	 * mutator method for clap blog id
+	 *
+	 * @param Uuid/string $newClapBlogId for the new value of the clap blog id
+	 * @throws \InvalidArgumentException if $newClapBlogId is not positive
+	 * @throws \TypeError if $newClapBlogId is not an integer
+	 **/
+	public function setClapBlogId($newClapBlogId): void {
+		try {
+			$uuid = self::validateUuid($newClapBlogId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		// store and convert the clap blog id
+		$this->clapBlogId = $uuid;
+	}
+	/**
+	 * accessor method for clap blog id
+	 *
+	 * @return Uuid/string value for the value of clap blog id
+	 **/
+	public function getClapProfileId() {
+		return $this->clapProfileId;
+	}
+	/**
+	 * mutator method for clap profile id
+	 *
+	 * @param Uuid/string $newClapProfileId for the new value of the clap profile id
+	 * @throws \InvalidArgumentException if $newClapProfileId is not positive
+	 * @throws \TypeError if $newClapProfileId is not an integer
+	 **/
+	public function setClapProfileId($newClapProfileId) : void {
+		try {
+			$uuid = self::validateUuid($newClapProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		//store and convert the clap profile id
+		$this->clapProfileId = $uuid;
+	}
+
+
 
 
 
