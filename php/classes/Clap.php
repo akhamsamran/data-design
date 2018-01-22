@@ -106,7 +106,20 @@ class Clap implements \JsonSerializable {
 		$this->clapProfileId = $uuid;
 	}
 
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
 
+		$fields["clapId"] = $this->clapId->toString();
+		$fields["clapBlogId"] = $this->clapBlogId->toString();
+		$fields["clapProfileId"] = $this->clapProfileId->toString();
+
+		return($fields);
+	}
 
 
 

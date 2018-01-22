@@ -325,6 +325,21 @@ class Profile implements \JsonSerializable {
 		throw(new UnexpectedValueException("Unable to construct Profile", 0, $exception));
 		}
 	}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["profileId"] = $this->profileId->toString();
+		unset($fields["profileActivactionToken"]);
+		unset($fields["profileHash"]);
+		unset($fields["profileSalt"]);
+
+		return($fields);
+	}
 
 
 }

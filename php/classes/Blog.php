@@ -193,7 +193,22 @@ class blog implements \JsonSerializable {
 		$this->blogTitle = $newBlogTitle;
 	}
 
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
 
+		$fields["blogId"] = $this->blogId->toString();
+		$fields["blogProfileId"] = $this->blogProfileId->toString();
+
+		//format the date so that the front end can consume it
+		$fields["blogDate"] = round(floatval($this->blogDate->format("U.u")) * 1000);
+		return($fields);
+	}
+}
 
 
 
