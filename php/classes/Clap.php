@@ -40,7 +40,7 @@ class Clap {
 	 *
 	 * @return Uuid/string value for the value of clap id
 	 **/
-	public function getClapId() {
+	public function getClapId(): uuid {
 		return $this->clapId;
 	}
 	/**
@@ -65,7 +65,7 @@ class Clap {
 	 *
 	 * @return Uuid/string value for the value of clap blog id
 	 **/
-	public function getClapBlogId() {
+	public function getClapBlogId(): uuid {
 		return $this->clapBlogId;
 	}
 	/**
@@ -90,7 +90,7 @@ class Clap {
 	 *
 	 * @return Uuid/string value for the value of clap blog id
 	 **/
-	public function getClapProfileId() {
+	public function getClapProfileId() : uuid {
 		return $this->clapProfileId;
 	}
 	/**

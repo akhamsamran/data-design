@@ -53,7 +53,7 @@ class blog {
 	 *
 	 * @return Uuid string value for blog id
 	 **/
-	public function getBlogId() {
+	public function getBlogId(): uuid {
 		return $this->blogId;
 	}
 	/**
@@ -78,7 +78,7 @@ class blog {
 	 *
 	 * @return int $newBlogProfileId
 	 */
-	public function getBlogProfileId() {
+	public function getBlogProfileId() : uuid {
 		return $this->blogProfileId;
 	}
 	/**
@@ -139,7 +139,7 @@ class blog {
 	/**
 	 * @return mixed
 	 */
-	public function getBlogDate(): string {
+	public function getBlogDate(): void {
 		return $this->blogDate;
 	}
 	/**

@@ -68,7 +68,7 @@ class Profile {
 	 *
 	 * @return Uuid value of profile id
 	 **/
-	public function getProfileId(){
+	public function getProfileId() : uuid {
 		return($this->profileId);
 	}
 
