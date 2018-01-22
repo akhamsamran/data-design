@@ -106,7 +106,7 @@ class blog {
 	/**
 	 * @return mixed
 	 */
-	public function getBlogContent() {
+	public function getBlogContent() : string {
 		return $this->blogContent;
 	}
 	/**
@@ -117,7 +117,7 @@ class blog {
 	 * @throws \RangeException if $newBlogContent is >20000 characters
 	 * @throws \TypeError if $newBlogContent is not a string
 	 */
-	public function setBlogContent(string $newBlogContent) : void {
+	public function setBlogContent(string $newBlogContent) : string {
 		//verify the new blog content is secure
 		$newBlogContent = trim($newBlogContent);
 		$newBlogContent = filter_var($newBlogContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -139,7 +139,7 @@ class blog {
 	/**
 	 * @return mixed
 	 */
-	public function getBlogDate() {
+	public function getBlogDate(): string {
 		return $this->blogDate;
 	}
 	/**
@@ -170,7 +170,7 @@ class blog {
 	 *
 	 * @return string $blogTitle
 	 **/
-	public function getBlogTitle() {
+	public function getBlogTitle() : string {
 		return $this->blogTitle;
 	}
 	/**
