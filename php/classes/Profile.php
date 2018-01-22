@@ -95,7 +95,7 @@ class Profile {
 	 *
 	 * @return string value of profile about me
 	 **/
-	public function getprofileAboutMe(){
+	public function getprofileAboutMe(): string {
 		return ($this->profileAboutMe);
 	}
 	/**
@@ -117,7 +117,7 @@ class Profile {
 	 *
 	 * @return string value of profile activation token
 	 **/
-	public function getProfileActivationToken() {
+	public function getProfileActivationToken() : string {
 		return ($this->profileActivationToken);
 	}
 	/**
@@ -150,7 +150,7 @@ class Profile {
 	 *
 	 * @return string value of profile email
 	 **/
-	public function getProfileEmail() {
+	public function getProfileEmail(): string {
 		return($this->profileEmail);
 	}
 	/**
@@ -181,7 +181,7 @@ class Profile {
 	 *
 	 * @return string value of profile first name
 	 */
-	public function getProfileFirstName() {
+	public function getProfileFirstName() : string {
 		return($this->profileFirstName);
 	}
 	/**
@@ -209,7 +209,7 @@ class Profile {
 	 *
 	 * @return string value of profile hash
 	 **/
-	public function getProfileHash() {
+	public function getProfileHash(): string {
 		return($this->profileHash);
 	}
 	/**
@@ -243,7 +243,7 @@ class Profile {
 	 *
 	 * @return string value of profile last name
 	 */
-	public function getProfileLastName() {
+	public function getProfileLastName() : string {
 		return ($this->profileLastName);
 	}
 	/**
