@@ -4,7 +4,16 @@
  * User: anna
  * Date: 1/19/2018
  * Time: 1:29 PM
- */
+**/
+
+/**
+ * add namespace
+ **/
+namespace Edu\Cnm\Akhamsamran1\DataDesign;
+require_once("autoload.php");
+require_once(dirname(__DIR__ . "autoload.php");
+use Ramsey\Uuid\Uuid;
+
 
 /**
  * Typical profile for a bloging or article sharing website like Medium
@@ -66,7 +75,7 @@ class Profile {
 	/**
 	 * mutator method for profile id
 	 *
-	 * @param Uuid/string $newProfileId new value of profile id
+	 * @param Uuid|string $newProfileId new value of profile id
 	 * @throws \UnexpectedValueException if $newProfileId is not an integer
 	 * @throws \RangeException if $newProfileId is not positive
 	 * @throws \TypeError if the profile Id is not
