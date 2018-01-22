@@ -135,7 +135,7 @@ class Profile {
 		}
 		$newProfileActivationToken = strtolower(trim($newProfileActivationToken));
 		if(ctype_xdigit($newProfileActivationToken) === false) {
-			throw(new\RangeException("user activation is not valid"));
+			throw(new\InvalidArgumentException("user activation is not valid"));
 		}
 		//make sure user activation token is only 32 characters
 		if(strlen($newProfileActivationToken) !== 32) {
