@@ -175,7 +175,6 @@ class Profile {
 		//convert and store profile email
 		$this->profileEmail = $newProfileEmail;
 	}
-
 	/**
 	 * profile accessor method for profile first name
 	 *
@@ -189,7 +188,7 @@ class Profile {
 	 *
 	 * @param string $newProfileFirstName new profile first name
 	 * @throws \UnexpectedValueException if $newProfileFirstName is not a string
-	 * @throws \UnexpectedValueException if $newProfileFirstName is >50 characters
+	 * @throws \RangeException if $newProfileFirstName is >50 characters
 	 */
 	public function setProfileFirstName($newProfileFirstName) {
 		$newProfileFirstName = filter_var($newProfileFirstName, FILTER_SANITIZE_STRING);
