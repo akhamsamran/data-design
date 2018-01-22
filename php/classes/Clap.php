@@ -6,6 +6,13 @@
  * Time: 8:03 PM
  */
 /**
+ * add namespace
+ **/
+namespace Edu\Cnm\Akhamsamran1\DataDesign;
+require_once("autoload.php");
+require_once(dirname(__DIR__ . "autoload.php");
+use Ramsey\Uuid\Uuid;
+/**
  * this is a clap (similar to a like in twitter) class for a blogging website like Medium
  *
  * clap class stores a unique id for clapId, the blogId for which the clap was given, and the profileID for the profile who gave the clap.  Each clap is unique, since each profileId can give many/multiple "claps" to a blog.  Having a compound clapId as unique will not allow this, therefore a non-compound unique ID is required.

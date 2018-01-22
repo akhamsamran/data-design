@@ -107,7 +107,7 @@ class Profile {
 	public function setProfileAboutMe($newProfileAboutMe) {
 		$newProfileAboutMe = filter_var($newProfileAboutMe, FILTER_SANITIZE_STRING);
 		if($newProfileAboutMe === false) {
-			throw(new UnexpectedValueException("About me is not a valid string"));
+			throw(new \UnexpectedValueException("About me is not a valid string"));
 		}
 		//convert and store the profile about me
 		$this->profileAboutMe = $newProfileAboutMe;
