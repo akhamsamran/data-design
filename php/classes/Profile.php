@@ -19,7 +19,7 @@ use Ramsey\Uuid\Uuid;
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  *
  **/
-class Profile {
+class Profile implements \JsonSerializable {
 	/**
 	 * add use validate Uuid.php
 	 **/

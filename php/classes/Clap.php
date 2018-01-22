@@ -12,7 +12,7 @@ use Ramsey\Uuid\Uuid;
  *
  * clap class stores a unique id for clapId, the blogId for which the clap was given, and the profileID for the profile who gave the clap.  Each clap is unique, since each profileId can give many/multiple "claps" to a blog.  Having a compound clapId as unique will not allow this, therefore a non-compound unique ID is required.
  **/
-class Clap {
+class Clap implements \JsonSerializable {
 	/**
 	 * add use validate Uuid.php
 	 **/

@@ -18,7 +18,7 @@ use Ramsey\Uuid\Uuid;
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  *
  **/
-class blog {
+class blog implements \JsonSerializable {
 	/**
 	 * add validate date and validate uuid
 	 **/
