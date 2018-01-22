@@ -66,7 +66,7 @@ class Profile {
 	/**
 	 * accessor method for profile id
 	 *
-	 * @return Uuid value of profile id
+	 * @return string|Uuid value of profile id
 	 **/
 	public function getProfileId() : uuid {
 		return($this->profileId);
@@ -75,7 +75,7 @@ class Profile {
 	/**
 	 * mutator method for profile id
 	 *
-	 * @param Uuid|string $newProfileId new value of profile id
+	 * @param string|Uuid $newProfileId new value of profile id
 	 * @throws \UnexpectedValueException if $newProfileId is not an integer
 	 * @throws \RangeException if $newProfileId is not positive
 	 * @throws \TypeError if the profile Id is not

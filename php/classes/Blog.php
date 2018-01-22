@@ -51,7 +51,7 @@ class blog {
 	/**
 	 *accessor method for blog id
 	 *
-	 * @return Uuid string value for blog id
+	 * @return string|Uuid value for blog id
 	 **/
 	public function getBlogId(): uuid {
 		return $this->blogId;
@@ -59,7 +59,7 @@ class blog {
 	/**
 	 * mutator method for blog id
 	 *
-	 * @param Uuid /string $newBlogId for the new value of the blog id
+	 * @param string|Uuid $newBlogId for the new value of the blog id
 	 * @throws \InvalidArgumentException if $newBlogId is not positive
 	 * @throws \TypeError if $newBlogId is not an integer
 	 **/
@@ -76,7 +76,7 @@ class blog {
 	/**
 	 * accessor method for blog profile id
 	 *
-	 * @return int $newBlogProfileId
+	 * @return string|Uuid $newBlogProfileId
 	 */
 	public function getBlogProfileId() : uuid {
 		return $this->blogProfileId;
@@ -84,7 +84,7 @@ class blog {
 	/**
 	 * mutator method for blog profile id
 	 *
-	 *@param  Uuid/string $newBlogProfileId new value of blog profile id
+	 *@param  string|Uuid $newBlogProfileId new value of blog profile id
 	 *@throws \RangeException if $newProfileId is not positive
 	 *@throws \TypeError if $newTweetProfileId is not an integer
 	 **/

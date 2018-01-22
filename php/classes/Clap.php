@@ -46,7 +46,7 @@ class Clap {
 	/**
 	 * mutator method for clap id
 	 *
-	 * @param Uuid/string $newClapId for the new value of the clap id
+	 * @param string|Uuid $newClapId for the new value of the clap id
 	 * @throws \InvalidArgumentException if $newClapId is not positive
 	 * @throws \TypeError if $newClapId is not an integer
 	 **/
@@ -63,7 +63,7 @@ class Clap {
 	/**
 	 * accessor method for clap blog id
 	 *
-	 * @return Uuid/string value for the value of clap blog id
+	 * @return string|Uuid value for the value of clap blog id
 	 **/
 	public function getClapBlogId(): uuid {
 		return $this->clapBlogId;
@@ -71,7 +71,7 @@ class Clap {
 	/**
 	 * mutator method for clap blog id
 	 *
-	 * @param Uuid/string $newClapBlogId for the new value of the clap blog id
+	 * @param string|Uuid $newClapBlogId for the new value of the clap blog id
 	 * @throws \InvalidArgumentException if $newClapBlogId is not positive
 	 * @throws \TypeError if $newClapBlogId is not an integer
 	 **/
@@ -88,7 +88,7 @@ class Clap {
 	/**
 	 * accessor method for clap blog id
 	 *
-	 * @return Uuid/string value for the value of clap blog id
+	 * @return string|Uuid value for the value of clap blog id
 	 **/
 	public function getClapProfileId() : uuid {
 		return $this->clapProfileId;
@@ -96,7 +96,7 @@ class Clap {
 	/**
 	 * mutator method for clap profile id
 	 *
-	 * @param Uuid/string $newClapProfileId for the new value of the clap profile id
+	 * @param string|Uuid $newClapProfileId for the new value of the clap profile id
 	 * @throws \InvalidArgumentException if $newClapProfileId is not positive
 	 * @throws \TypeError if $newClapProfileId is not an integer
 	 **/
