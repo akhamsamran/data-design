@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: anna
- * Date: 1/19/2018
- * Time: 1:29 PM
-**/
 
 /**
  * add namespace
  **/
 namespace Edu\Cnm\Akhamsamran1\DataDesign;
+
 require_once("autoload.php");
-require_once(dirname(__DIR__ . "autoload.php");
+require_once(dirname(__DIR__ . "autoload.php"));
 use Ramsey\Uuid\Uuid;
 
 

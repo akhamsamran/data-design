@@ -1,16 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: anna
- * Date: 1/19/2018
- * Time: 8:03 PM
- */
+
 /**
  * add namespace
  **/
 namespace Edu\Cnm\Akhamsamran1\DataDesign;
 require_once("autoload.php");
-require_once(dirname(__DIR__ . "autoload.php");
+require_once(dirname(__DIR__ . "autoload.php"));
 use Ramsey\Uuid\Uuid;
 /**
  * this is a clap (similar to a like in twitter) class for a blogging website like Medium
