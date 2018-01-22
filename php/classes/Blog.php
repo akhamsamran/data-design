@@ -139,7 +139,7 @@ class blog {
 	/**
 	 * @return mixed
 	 */
-	public function getBlogDate(): void {
+	public function getBlogDate(): DateTime {
 		return $this->blogDate;
 	}
 	/**
