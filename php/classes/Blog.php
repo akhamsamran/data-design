@@ -45,6 +45,7 @@ class blog implements \JsonSerializable {
 	 * title for the blog
 	 **/
 	private $blogTitle;
+
 	/**
 	 *accessor method for blog id
 	 *
@@ -68,18 +69,18 @@ class blog implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 * @Documentationhttps://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newBlogId, $newBlogProfile, $newBlogContent, $newBlogDate,$newBlogTitle) {
-		try{
+	public function __construct($newBlogId, $newBlogProfile, $newBlogContent, $newBlogDate, $newBlogTitle) {
+		try {
 			$this->setBlogId($newBlogId);
 			$this->setBlogProfileId($newBlogProfileId);
 			$this->setBlogContent($newBlogContent);
 			$this->setBlogDate($newBlogDate);
 			$this->setBlogTitle($newBlogTitle);
-}		//determine what exception type was thrown
-catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-	$exceptionType = get_class($exception);
-	throw(new $exceptionType($exception->getMessage(), 0, $exception));
-}
+		}      //determine what exception type was thrown
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
 	}
 
 	/**
@@ -99,22 +100,24 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 		// store and convert the blog id
 		$this->blogId = $uuid;
 	}
+
 	/**
 	 * accessor method for blog profile id
 	 *
 	 * @return string|Uuid $newBlogProfileId
 	 */
-	public function getBlogProfileId() : uuid {
+	public function getBlogProfileId(): uuid {
 		return $this->blogProfileId;
 	}
+
 	/**
 	 * mutator method for blog profile id
 	 *
-	 *@param  string|Uuid $newBlogProfileId new value of blog profile id
-	 *@throws \RangeException if $newProfileId is not positive
-	 *@throws \TypeError if $newTweetProfileId is not an integer
+	 * @param  string|Uuid $newBlogProfileId new value of blog profile id
+	 * @throws \RangeException if $newProfileId is not positive
+	 * @throws \TypeError if $newTweetProfileId is not an integer
 	 **/
-	public function setBlogProfileId( $newBlogProfileId) : void {
+	public function setBlogProfileId($newBlogProfileId): void {
 		try {
 			$uuid = self::validateUuid($newBlogProfileId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -132,9 +135,10 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 	/**
 	 * @return mixed
 	 */
-	public function getBlogContent() : string {
+	public function getBlogContent(): string {
 		return $this->blogContent;
 	}
+
 	/**
 	 * mutator method for blog content
 	 *
@@ -143,11 +147,11 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 	 * @throws \RangeException if $newBlogContent is >20000 characters
 	 * @throws \TypeError if $newBlogContent is not a string
 	 */
-	public function setBlogContent(string $newBlogContent) : string {
+	public function setBlogContent(string $newBlogContent): string {
 		//verify the new blog content is secure
 		$newBlogContent = trim($newBlogContent);
 		$newBlogContent = filter_var($newBlogContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if (empty($newBlogContent)===true) {
+		if(empty($newBlogContent) === true) {
 			throw(new \InvalidArgumentException("content invalid or insecure"));
 		}
 		//verify blog content will fit in the database
@@ -168,6 +172,7 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 	public function getBlogDate(): DateTime {
 		return $this->blogDate;
 	}
+
 	/**
 	 * mutator method for blog date
 	 *
@@ -175,7 +180,7 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 	 * @throws \InvalidArgumentException if $newBlogDate is not a valid object or string
 	 * @throws \RangeException if $newBlogDate is a date that does not exist
 	 **/
-	public function setBlogDate($newBlogDate = null) : void {
+	public function setBlogDate($newBlogDate = null): void {
 		// base case: if the date is null, use the current date and time
 		if($newBlogDate === null) {
 			$this->blogDate = new \DateTime();
@@ -191,14 +196,16 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 		//stores the blog date
 		$this->tweetDate = $newBlogDate;
 	}
+
 	/**
 	 * accessor method for blog title
 	 *
 	 * @return string $blogTitle
 	 **/
-	public function getBlogTitle() : string {
+	public function getBlogTitle(): string {
 		return $this->blogTitle;
 	}
+
 	/**
 	 * mutator method for blog title
 	 *
@@ -207,7 +214,7 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 	 * @throws \RangeException if $newBlogTitle is > 128 characters
 	 * @throws \TypeError if $newBlogTitle is not a string
 	 **/
-	public function setBlogTitle(string $newBlogTitle) : void {
+	public function setBlogTitle(string $newBlogTitle): void {
 		//verify the blog title is secure
 		$newBlogTitle = trim($newBlogTitle);
 		$newBlogTitle = filter_var($newBlogTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -235,15 +242,8 @@ catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exc
 
 		//format the date so that the front end can consume it
 		$fields["blogDate"] = round(floatval($this->blogDate->format("U.u")) * 1000);
-		return($fields);
+		return ($fields);
 	}
-}
-
-
-
-
-
-
 
 }
 
