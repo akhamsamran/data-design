@@ -53,6 +53,35 @@ class blog implements \JsonSerializable {
 	public function getBlogId(): uuid {
 		return $this->blogId;
 	}
+
+	/**
+	 * constructor for this blog
+	 *
+	 * @param Uuid/string $newBlogId new blog id
+	 * @param Uuid/string $newBlogProfileId new blog profile id for the profile who wrote the blog
+	 * @param string $newBlogContent new content for this blog
+	 * @param \DateTime|string|null $newBlogDate date and time blog was created or null if set to current date and time
+	 * @param string $newBlogTitle the new title for the new blog
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if data types violate type hints
+	 * @throws \Exception if some other exception occurs
+	 * @Documentationhttps://php.net/manual/en/language.oop5.decon.php
+	 **/
+	public function __construct($newBlogId, $newBlogProfile, $newBlogContent, $newBlogDate,$newBlogTitle) {
+		try{
+			$this->setBlogId($newBlogId);
+			$this->setBlogProfileId($newBlogProfileId);
+			$this->setBlogContent($newBlogContent);
+			$this->setBlogDate($newBlogDate);
+			$this->setBlogTitle($newBlogTitle);
+		}		//determine what exception type was thrown
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
+
 	/**
 	 * mutator method for blog id
 	 *
