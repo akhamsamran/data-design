@@ -335,7 +335,7 @@ class Profile implements \JsonSerializable {
 		$fields = get_object_vars($this);
 
 		$fields["profileId"] = $this->profileId->toString();
-		unset($fields["profileActivactionToken"]);
+		unset($fields["profileActivationToken"]);
 		unset($fields["profileHash"]);
 		unset($fields["profileSalt"]);
 
