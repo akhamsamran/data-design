@@ -59,6 +59,41 @@ class Profile implements \JsonSerializable {
 	private $profileSalt;
 
 	/**
+	 * constructor for this profile
+	 *
+	 * @param int $newProfileId new profile id
+	 * @param string $newProfileAboutMe new bio info called about me
+	 * @param string $newProfileActivationToken new activation token
+	 * @param string $newProfileEmail new email for the profile
+	 * @param string $newProfileFirstName new first name for the profile
+	 * @param string $newProfileHash new hash for the profile
+	 * @param string $newProfileLastName new last name for the profile
+	 * @param String $newProfileSalt new salt for the profle
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if data types violate type hints
+	 * @throws \Exception if some other exception occurs
+	 * @Documentationhttps://php.net/manual/en/language.oop5.decon.php
+	 **/
+	public function __construct($newProfileId, $newProfileAboutMe, $newProfileActivationToken, $newProfileEmail,$newProfileFirstName, $newProfileHash, $newProfileLastName, $newProfileSalt) {
+		try{
+			$this->setProfileId($newProfileId);
+			$this->setProfileAboutMe($newProfileAboutMe);
+			$this->setprofileActivationToken($newProfileActivationToken);
+			$this->setprofileEmail($newProfileEmail);
+			$this->setprofileFirstName($newProfileFirstName);
+			$this->setprofileHash($newProfileHash);
+			$this->setprofileLastName($newProfileLastName);
+			$this->setprofileSalt($newProfileSalt);
+
+		}		//determine what exception type was thrown
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
+
+	/**
 	 * accessor method for profile id
 	 *
 	 * @return string|Uuid value of profile id
@@ -66,7 +101,6 @@ class Profile implements \JsonSerializable {
 	public function getProfileId() : uuid {
 		return($this->profileId);
 	}
-
 	/**
 	 * mutator method for profile id
 	 *
@@ -292,39 +326,6 @@ class Profile implements \JsonSerializable {
 	}
 
 
-
-
-
-
-
-	/**
-	 * constructor for this profile
-	 *
-	 * @param int $newProfileId new profile id
-	 * @param string $newProfileAboutMe
-	 * @param string $newProfileActivationToken
-	 * @param string $newProfileEmail
-	 * @param string $newProfileFirstName
-	 * @param string $newProfileHash
-	 * @param string $newProfileLastName
-	 * @param String $newProfileSalt
-	 * @throws UnexpectedValueException if any of the parameters are invalid
-	 **/
-	public function __construct($newProfileId, $newProfileAboutMe, $newProfileActivationToken, $newProfileEmail,$newProfileFirstName, $newProfileHash, $newProfileLastName, $newProfileSalt) {
-		try{
-			$this->setProfileId($newProfileId);
-			$this->setProfileAboutMe($newProfileAboutMe);
-			$this->setprofileActivationToken($newProfileActivationToken);
-			$this->setprofileEmail($newProfileEmail);
-			$this->setprofileFirstName($newProfileFirstName);
-			$this->setprofileHash($newProfileHash);
-			$this->setprofileLastName($newProfileLastName);
-			$this->setprofileSalt($newProfileSalt);
-		} catch(UnexpectedValueException $exception){
-			//rethrow to the caller
-		throw(new UnexpectedValueException("Unable to construct Profile", 0, $exception));
-		}
-	}
 	/**
 	 * formats the state variables for JSON serialization
 	 *
