@@ -3,7 +3,7 @@
 /**
  * add namespace
  **/
-namespace Edu\Cnm\Akhamsamran1\DataDesign;
+namespace Edu\Cnm\DataDesign;
 
 require_once("autoload.php");
 require_once(dirname(__DIR__ . "autoload.php"));
@@ -23,7 +23,7 @@ class Profile implements \JsonSerializable {
 	/**
 	 * add use validate Uuid.php
 	 **/
-	use \Edu\Cnm\DataDesign\ValidateUuid;
+	use ValidateUuid;
 	/**
 	 * id for this Profile; this is the primary key
 	 * this is a unique index

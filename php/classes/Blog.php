@@ -3,7 +3,7 @@
 /**
  * add namespace
  **/
-namespace Edu\Cnm\Akhamsamran1\DataDesign;
+namespace Edu\Cnm\DataDesign;
 
 require_once("autoload.php");
 require_once(dirname(__DIR__ . "autoload.php"));
@@ -22,8 +22,8 @@ class blog implements \JsonSerializable {
 	/**
 	 * add validate date and validate uuid
 	 **/
-	use \Edu\Cnm\DataDesign\ValidateUuid;
-	use \Edu\Cnm\DataDesign\ValidateDate;
+	use ValidateUuid;
+	use ValidateDate;
 	/**
 	 * id for this blog, this is the primary key
 	 * this is a unique index
@@ -54,7 +54,6 @@ class blog implements \JsonSerializable {
 	public function getBlogId(): uuid {
 		return $this->blogId;
 	}
-
 	/**
 	 * constructor for this blog
 	 *
