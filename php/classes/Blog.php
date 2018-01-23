@@ -69,7 +69,7 @@ class blog implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 * @Documentationhttps://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newBlogId, $newBlogProfile, $newBlogContent, $newBlogDate, $newBlogTitle) {
+	public function __construct($newBlogId, $newBlogProfileId, $newBlogContent, $newBlogDate, $newBlogTitle) {
 		try {
 			$this->setBlogId($newBlogId);
 			$this->setBlogProfileId($newBlogProfileId);
