@@ -75,11 +75,11 @@ class blog implements \JsonSerializable {
 			$this->setBlogContent($newBlogContent);
 			$this->setBlogDate($newBlogDate);
 			$this->setBlogTitle($newBlogTitle);
-		}		//determine what exception type was thrown
-		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			$exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
-		}
+}		//determine what exception type was thrown
+catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+	$exceptionType = get_class($exception);
+	throw(new $exceptionType($exception->getMessage(), 0, $exception));
+}
 	}
 
 	/**

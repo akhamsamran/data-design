@@ -30,6 +30,31 @@ class Clap implements \JsonSerializable {
 	* id for the profile who gave the clap, this is a foreign key
 	**/
 	private $clapProfileId;
+
+	/**
+	 * constructor for this blog
+	 *
+	 * @param Uuid/string $newClapId new clap id
+	 * @param Uuid/string $newClapBlogId new blog id for the blog that received a clap
+	 * @param Uuid/string $newBlogProfileId new profile id for the profile that gave the clap
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if data types violate type hints
+	 * @throws \Exception if some other exception occurs
+	 * @Documentationhttps://php.net/manual/en/language.oop5.decon.php
+	 **/
+	public function __construct($newClapId, $newClapBlogId, $newClapProfileId) {
+		try{
+			$this->setClapId($newClapId);
+			$this->setClapBlogId($newClapBlogId);
+			$this->setClapProfileId($newClapProfileId);
+		}		//determine what exception type was thrown
+		catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
+
 	/**
 	 * accessor method for clap id
 	 *
