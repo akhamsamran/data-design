@@ -336,13 +336,32 @@ class Profile implements \JsonSerializable {
 	public function insert(\PDO $pdo) : void {
 
 		// create query template (using the PDO prepare statement)
-		$query = "INSERT INTO blog(profileId, profileAboutMe, profileActivationToken, profileEmail, profileFirstNameprofileFirstName, profileHash, profileLastName, profileSalt) VALUES(:profileId, :profileAboutMe, :profileActivationToken, :profileEmail, :profileFirstName, :profileHash, :profileLastName, :profileSalt)";
+		$query = "INSERT INTO profile(profileId, profileAboutMe, profileActivationToken, profileEmail, profileFirstName, profileHash, profileLastName, profileSalt) VALUES(:profileId, :profileAboutMe, :profileActivationToken, :profileEmail, :profileFirstName, :profileHash, :profileLastName, :profileSalt)";
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template (using PDO execute statement)
 		$parameters = ["profileId" => $this->profileId->getBytes(), "profileAboutMe" => $this->profileAboutMe, "profileActivationToken" => $this->profileActivationToken, "profileEmail" => $this->profileEmail, "profileFirstName" => $this->profileFirstName, "profileHash" => $this->profileHash, "profileLastName" => $this->profileLastName, "profileSalt" => $this->profileSalt];
 		$statement->execute($parameters);
 	}
+
+	/**
+	 * deletes this Profile from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+
+		// create query template
+		$query = "DELETE FROM profile WHERE profileId = :profileId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["profileId" => $this->profileId->getBytes()];
+		$statement->execute($parameters);
+	}
+
 
 	/**
 	 * formats the state variables for JSON serialization
