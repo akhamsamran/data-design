@@ -336,15 +336,13 @@ class Profile implements \JsonSerializable {
 	public function insert(\PDO $pdo) : void {
 
 		// create query template (using the PDO prepare statement)
-		$query = "INSERT INTO blog(profileId, profileAboutMe, profileActivationToken, profileEmail, profileFirstName, profileHash, profileLastName, profileSalt) VALUES(:profileId, :profileAboutMe, :profileActivationToken, :profileEmail, :profileFirstName, :profileHash, :profileLastName, :profileSalt)";
+		$query = "INSERT INTO blog(profileId, profileAboutMe, profileActivationToken, profileEmail, profileFirstNameprofileFirstName, profileHash, profileLastName, profileSalt) VALUES(:profileId, :profileAboutMe, :profileActivationToken, :profileEmail, :profileFirstName, :profileHash, :profileLastName, :profileSalt)";
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template (using PDO execute statement)
-		$parameters = ["profileId" => $this->profileId->getBytes(), "profileAboutMe" => $this->profileAboutMe->getBytes(), "blogContent" => $this->blogContent, "blogDate" => $formattedDate, "blogTitle" => $this->blogTitle];
+		$parameters = ["profileId" => $this->profileId->getBytes(), "profileAboutMe" => $this->profileAboutMe, "profileActivationToken" => $this->profileActivationToken, "profileEmail" => $this->profileEmail, "profileFirstName" => $this->profileFirstName, "profileHash" => $this->profileHash, "profileLastName" => $this->profileLastName, "profileSalt" => $this->profileSalt];
 		$statement->execute($parameters);
 	}
-
-
 
 	/**
 	 * formats the state variables for JSON serialization
