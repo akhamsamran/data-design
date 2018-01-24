@@ -268,6 +268,26 @@ class blog implements \JsonSerializable {
 
 
 	/**
+	 * updates this Blog in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		// create query template
+		$query = "UPDATE clap SET blogProfileId = :blogProfileId, blogContent = :blogContent, blogDate =:blogDate, blogTitle = :blogTitle WHERE blogId = :blogId";
+		$statement = $pdo->prepare($query);
+
+		$formattedDate = $this->blogDate->format("Y-m-d H:i:s.u");
+		$parameters = ["blogId" => $this->blogId->getBytes()," blogProfileId" =>$this->clapBlogId->getBytes(), "blogContent" => $this->blogContent, "blogDate" => $formattedDate, "blogTitle" => $this->blogTitle];
+		$statement->execute($parameters);
+	}
+
+
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
