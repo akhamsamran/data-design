@@ -167,6 +167,24 @@ class Clap implements \JsonSerializable {
 		$statement->execute($parameters);
 	}
 
+	/**
+	 * updates this Clap in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		// create query template
+		$query = "UPDATE clap SET clapBlogId = :clapBlogId, clapProfileId = :clapProfile WHERE clapId = :tweetId";
+		$statement = $pdo->prepare($query);
+
+
+		$parameters = ["clapId" => $this->clapId->getBytes()," clapBlogId" =>$this->clapBlogId->getBytes];
+		$statement->execute($parameters);
+	}
+
 
 	/**
 	 * formats the state variables for JSON serialization
