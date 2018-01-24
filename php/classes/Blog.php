@@ -228,6 +228,28 @@ class blog implements \JsonSerializable {
 		$this->blogTitle = $newBlogTitle;
 	}
 
+
+	/**
+	 * inserts this Blog into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) : void {
+
+		// create query template
+		$query = "INSERT INTO blog(blogId, blogProfileId, blogContent, blogDate, blogTitle) VALUES(:blogId, :blogProfileId, :blogContent, :blogDate, :blogTitle)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$formattedDate = $this->blogDate->format("Y-m-d H:i:s.u");
+		$parameters = ["blogId" => $this->blogId->getBytes(), "blogProfileId" => $this->blogProfileId->getBytes(), "blogContent" => $this->blogContent, "blogDate" => $formattedDate, "blogTitle" => $this->blogTitle];
+		$statement->execute($parameters);
+	}
+
+
+
 	/**
 	 * formats the state variables for JSON serialization
 	 *

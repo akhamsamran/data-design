@@ -140,11 +140,11 @@ class Clap implements \JsonSerializable {
 	 **/
 	public function insert(\PDO $pdo) : void {
 
-		// create query template
+		// create query template (using the PDO prepare statement)
 		$query = "INSERT INTO clap(clapId, clapBlogId, clapProfileId) VALUES(:clapId, :ClapBlogId, :clapProfileId)";
 		$statement = $pdo->prepare($query);
 
-		// bind the member variables to the place holders in the template
+		// bind the member variables to the place holders in the template (using PDO execute statement)
 		$parameters = ["clapId" => $this->clapId->getBytes(), "clapBlogId" => $this->clapBlogId->getBytes(), "clapBlogProfile" => $this->clapBlogId->getBytes()];
 		$statement->execute($parameters);
 	}
