@@ -238,11 +238,11 @@ class blog implements \JsonSerializable {
 	 **/
 	public function insert(\PDO $pdo) : void {
 
-		// create query template
+		// create query template (using the PDO prepare statement)
 		$query = "INSERT INTO blog(blogId, blogProfileId, blogContent, blogDate, blogTitle) VALUES(:blogId, :blogProfileId, :blogContent, :blogDate, :blogTitle)";
 		$statement = $pdo->prepare($query);
 
-		// bind the member variables to the place holders in the template
+		// bind the member variables to the place holders in the template (using PDO execute statement)
 		$formattedDate = $this->blogDate->format("Y-m-d H:i:s.u");
 		$parameters = ["blogId" => $this->blogId->getBytes(), "blogProfileId" => $this->blogProfileId->getBytes(), "blogContent" => $this->blogContent, "blogDate" => $formattedDate, "blogTitle" => $this->blogTitle];
 		$statement->execute($parameters);
