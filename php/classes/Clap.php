@@ -180,10 +180,12 @@ class Clap implements \JsonSerializable {
 		$query = "UPDATE clap SET clapBlogId = :clapBlogId, clapProfileId = :clapProfile WHERE clapId = :clapId";
 		$statement = $pdo->prepare($query);
 
-
 		$parameters = ["clapId" => $this->clapId->getBytes()," clapBlogId" =>$this->clapBlogId->getBytes];
 		$statement->execute($parameters);
 	}
+
+
+
 
 
 	/**
