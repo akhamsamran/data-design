@@ -177,7 +177,7 @@ class Clap implements \JsonSerializable {
 	public function update(\PDO $pdo) : void {
 
 		// create query template
-		$query = "UPDATE clap SET clapBlogId = :clapBlogId, clapProfileId = :clapProfile WHERE clapId = :tweetId";
+		$query = "UPDATE clap SET clapBlogId = :clapBlogId, clapProfileId = :clapProfile WHERE clapId = :clapId";
 		$statement = $pdo->prepare($query);
 
 
