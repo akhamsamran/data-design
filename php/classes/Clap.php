@@ -226,6 +226,44 @@ class Clap implements \JsonSerializable {
 		return($clap);
 	}
 
+	/**
+	 * gets the Clap by blog id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $clapBlogId blog id to search by
+	 * @return \SplFixedArray SplFixedArray of Claps found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getClapByClapBlogId(\PDO $pdo, $clapBlogId) : \SplFixedArray {
+
+		try {
+			$clapBlogId = self::validateUuid($clapBlogId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT clapId, clapBlogId, clapProfileId FROM clap WHERE clapBlogId = :clapBlogId";
+		$statement = $pdo->prepare($query);
+		// bind the clapBlogId to the place holder in the template
+		$parameters = ["clapBlogId" => $clapBlogId->getBytes()];
+		$statement->execute($parameters);
+		// build an array of claps
+		$claps = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$clap = new Clap($row["clapId"], $row["clapBlogId"], $row["clapProfileId"]);
+				$claps[$claps->key()] = $clap;
+				$claps->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($claps);
+	}
 
 
 
