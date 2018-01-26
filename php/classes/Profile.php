@@ -475,7 +475,7 @@ return($profiles);
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getProfileByProfileEmail(\PDO $pdo, string $profileAboutMe, $profileEmail) : \SplFixedArray {
+	public static function getProfileByProfileEmail(\PDO $pdo, string $profileEmail) : \SplFixedArray {
 		// sanitize the description before searching
 		$profileEmail = trim($profileEmail);
 		$profileEmail = filter_var($profileEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -521,24 +521,24 @@ return($profiles);
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getProfileByProfileEmail(\PDO $pdo, string $profileAboutMe, $profileEmail) : \SplFixedArray {
+	public static function getProfileByProfileFirstName(\PDO $pdo, string $profileFirstName) : \SplFixedArray {
 		// sanitize the description before searching
-		$profileEmail = trim($profileEmail);
-		$profileEmail = filter_var($profileEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($profileEmail) === true) {
-			throw(new \PDOException("profile email is invalid"));
+		$profileFirstName = trim($profileFirstName);
+		$profileFirstName = filter_var($profileFirstName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($profileFirstName) === true) {
+			throw(new \PDOException("profile first name is invalid"));
 		}
 
 // escape any mySQL wild cards
-		$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $profileEmail));
+		$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $profileFirstName));
 
 // create query template
-		$query = "SELECT profileId, profileAboutMe, profileActivationToken, profileFirstName, profileHash, profileLastName, profileSalt FROM profile WHERE profileEmail LIKE :profileEmail";
+		$query = "SELECT profileId, profileAboutMe, profileActivationToken, profileFirstName, profileHash, profileLastName, profileSalt FROM profile WHERE profileFirstName LIKE :profileFirstName";
 		$statement = $pdo->prepare($query);
 
-// bind the profile Email content to the place holder in the template
-		$profileEmail = "%$profileEmail%";
-		$parameters = ["profileEmail" => $profileEmail];
+// bind the profile FirstName content to the place holder in the template
+		$profileFirstName = "%$profileFirstName%";
+		$parameters = ["profileFirstName" => $profileFirstName];
 		$statement->execute($parameters);
 
 // build an array of profiles
