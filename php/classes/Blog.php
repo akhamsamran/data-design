@@ -345,7 +345,7 @@ class blog implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogContent FROM blog WHERE blogProfileId = :blogProfileId";
+		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogTitle FROM blog WHERE blogProfileId = :blogProfileId";
 		$statement = $pdo->prepare($query);
 		// bind the blog profile id to the place holder in the template
 		$parameters = ["blogProfileId" => $blogProfileId->getBytes()];
@@ -387,7 +387,7 @@ class blog implements \JsonSerializable {
 		$blogContent = str_replace("_", "\\_", str_replace("%", "\\%", $blogContent));
 
 // create query template
-		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogContent FROM blog WHERE blogContent = :blogContent";
+		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogTitle FROM blog WHERE blogContent = :blogContent";
 		$statement = $pdo->prepare($query);
 
 // bind the blog content content to the place holder in the template
@@ -432,7 +432,7 @@ class blog implements \JsonSerializable {
 		$blogTitle = str_replace("_", "\\_", str_replace("%", "\\%", $blogTitle));
 
 // create query template
-		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogContent FROM blog WHERE blogTitle = :blogTitlet";
+		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogTitle FROM blog WHERE blogTitle = :blogTitle";
 		$statement = $pdo->prepare($query);
 
 // bind the blog title content to the place holder in the template
@@ -456,7 +456,35 @@ class blog implements \JsonSerializable {
 		return($blogs);
 	}
 
+	/**
+	 * gets all Blogs
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Blogs found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllBlogs(\PDO $pdo) : \SPLFixedArray {
+		// create query template
+		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogTitle FROM blog";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
 
+// build an array of blogs
+		$blogs = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$blog = new Blog ($row["blogId"], $row["blogProfileId"], $row["blogContent"], $row["blogDate"],  $row["blogTitle"]);
+				$blogs[$blogs->key()] = $blog;
+				$blogs->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($blogs);
+	}
 
 
 	/**
