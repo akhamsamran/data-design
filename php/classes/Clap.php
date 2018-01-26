@@ -304,6 +304,37 @@ class Clap implements \JsonSerializable {
 		return($claps);
 	}
 
+	/**
+	 * gets all Claps
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Claps found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllClaps(\PDO $pdo) : \SPLFixedArray {
+		// create query template
+		$query = "SELECT clapId, clapBlogId, clapProfileId FROM clap";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+// build an array of claps
+		$claps = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$clap = new Clap ($row["clapId"], $row["clapBlogId"], $row["clapProfileId"]);
+				$claps[$claps->key()] = $clap;
+				$claps->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($claps);
+	}
+
+
 
 	/**
 	 * formats the state variables for JSON serialization
