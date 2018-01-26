@@ -327,6 +327,45 @@ class blog implements \JsonSerializable {
 	}
 
 
+	/**
+	 * gets the Blog by blog profile id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $blogProfileId blog profile id to search by
+	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getBlogByBlogProfileId(\PDO $pdo, $blogProfileId) : \SplFixedArray {
+
+		try {
+			$blogProfileId = self::validateUuid($blogProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogContent FROM blog WHERE blogProfileId = :blogProfileId";
+		$statement = $pdo->prepare($query);
+		// bind the blog profile id to the place holder in the template
+		$parameters = ["blogProfileId" => $blogProfileId->getBytes()];
+		$statement->execute($parameters);
+		// build an array of blogs
+		$blogs = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$blog = new Blog($row["blogId"], $row["blogProfileId"], $row["blogContent"], $row["blogDate"], $row["blogTitle"]);
+				$blogs[$blogs->key()] = $blog;
+				$blogs->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($blogs);
+	}
+
 
 
 

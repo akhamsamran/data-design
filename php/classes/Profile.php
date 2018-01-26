@@ -421,6 +421,52 @@ class Profile implements \JsonSerializable {
 		return($profile);
 	}
 
+	/**
+	 * gets the profile by profileAboutMe
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $profileAboutMe profile About Me to search by
+	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getProfileByProfileAboutMe(\PDO $pdo, string $profileAboutMe) : \SplFixedArray {
+	// sanitize the description before searching
+		$profileAboutMe = trim($profileAboutMe);
+		$profileAboutMe = filter_var($profileAboutMe, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($profileAboutMe) === true) {
+			throw(new \PDOException("profile about me is invalid"));
+		}
+
+// escape any mySQL wild cards
+$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $profileAboutMe));
+
+// create query template
+$query = "SELECT profileId, profileAbouMe, profileActivationToken, profileFirstName, profileHash, profileLastName, profileSalt FROM profile WHERE profileAboutMe LIKE :profileAboutMe";
+$statement = $pdo->prepare($query);
+
+// bind the profile About Me content to the place holder in the template
+$profileAboutMe = "%$profileAboutMe%";
+$parameters = ["profileAboutMe" => $profileAboutMe];
+$statement->execute($parameters);
+
+// build an array of profiles
+$profiles = new \SplFixedArray($statement->rowCount());
+$statement->setFetchMode(\PDO::FETCH_ASSOC);
+while(($row = $statement->fetch()) !== false) {
+	try {
+		$profile = new Profile ($row["profileId"], $row["profileActivationToken"], $row["profileAboutMe"], $row["profileEmail"],  $row["profileFirstName"], $row["profileHash"], $row["profileLastName"], $row["profileSalt"]);
+		$profiles[$profiles->key()] = $profile;
+		$profiles->next();
+	} catch(\Exception $exception) {
+		// if the row couldn't be converted, rethrow it
+		throw(new \PDOException($exception->getMessage(), 0, $exception));
+	}
+}
+return($profiles);
+}
+
+
 
 
 	/**
