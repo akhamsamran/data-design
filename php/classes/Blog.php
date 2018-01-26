@@ -366,6 +366,50 @@ class blog implements \JsonSerializable {
 		return($blogs);
 	}
 
+	/**
+	 * gets the blog by blog content
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $blogContnet clog content to search by
+	 * @return \SplFixedArray SplFixedArray of Blogs found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getBlogByBlogContent(\PDO $pdo, string $blogContent) : \SplFixedArray {
+		// sanitize the description before searching
+		$blogContent = trim($blogContent);
+		$blogContent = filter_var($blogContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($blogContent) === true) {
+			throw(new \PDOException("blog content is invalid"));
+		}
+
+// escape any mySQL wild cards
+		$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $blogContent));
+
+// create query template
+		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogContent FROM blog WHERE blogContent = :blogContent";
+		$statement = $pdo->prepare($query);
+
+// bind the blog content content to the place holder in the template
+		$blogContent = "%$blogContent%";
+		$parameters = ["blogContent" => $blogContent];
+		$statement->execute($parameters);
+
+// build an array of profiles
+		$blogs = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$blog = new Blog ($row["blogId"], $row["blogProfileId"], $row["blogContent"], $row["blogDate"],  $row["blogTitle"]);
+				$blogs[$blogs->key()] = $blog;
+				$blogs->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($blogs);
+	}
 
 
 
