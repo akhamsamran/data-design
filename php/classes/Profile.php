@@ -439,7 +439,7 @@ class Profile implements \JsonSerializable {
 		}
 
 // escape any mySQL wild cards
-$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $profileAboutMe));
+$profileAboutMe = str_replace("_", "\\_", str_replace("%", "\\%", $profileAboutMe));
 
 // create query template
 $query = "SELECT profileId, profileAboutMe, profileActivationToken, profileFirstName, profileHash, profileLastName, profileSalt FROM profile WHERE profileAboutMe LIKE :profileAboutMe";
@@ -484,7 +484,7 @@ return($profiles);
 		}
 
 // escape any mySQL wild cards
-		$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $profileEmail));
+		$profileEmail = str_replace("_", "\\_", str_replace("%", "\\%", $profileEmail));
 
 // create query template
 		$query = "SELECT profileId, profileAboutMe, profileActivationToken, profileFirstName, profileHash, profileLastName, profileSalt FROM profile WHERE profileEmail LIKE :profileEmail";
@@ -530,7 +530,7 @@ return($profiles);
 		}
 
 // escape any mySQL wild cards
-		$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $profileFirstName));
+		$profileFirstName = str_replace("_", "\\_", str_replace("%", "\\%", $profileFirstName));
 
 // create query template
 		$query = "SELECT profileId, profileAboutMe, profileActivationToken, profileFirstName, profileHash, profileLastName, profileSalt FROM profile WHERE profileFirstName LIKE :profileFirstName";
@@ -575,7 +575,7 @@ return($profiles);
 		}
 
 // escape any mySQL wild cards
-		$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $profileLastName));
+		$profileLastName = str_replace("_", "\\_", str_replace("%", "\\%", $profileLastName));
 
 // create query template
 		$query = "SELECT profileId, profileAboutMe, profileActivationToken, profileFirstName, profileHash, profileLastName, profileSalt FROM profile WHERE profileLastName LIKE :profileLastName";

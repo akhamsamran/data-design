@@ -370,7 +370,7 @@ class blog implements \JsonSerializable {
 	 * gets the blog by blog content
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid|string $blogContnet clog content to search by
+	 * @param Uuid|string $blogContnet blog content to search by
 	 * @return \SplFixedArray SplFixedArray of Blogs found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
@@ -384,7 +384,7 @@ class blog implements \JsonSerializable {
 		}
 
 // escape any mySQL wild cards
-		$tweetContent = str_replace("_", "\\_", str_replace("%", "\\%", $blogContent));
+		$blogContent = str_replace("_", "\\_", str_replace("%", "\\%", $blogContent));
 
 // create query template
 		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogContent FROM blog WHERE blogContent = :blogContent";
@@ -395,7 +395,52 @@ class blog implements \JsonSerializable {
 		$parameters = ["blogContent" => $blogContent];
 		$statement->execute($parameters);
 
-// build an array of profiles
+// build an array of blogs
+		$blogs = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$blog = new Blog ($row["blogId"], $row["blogProfileId"], $row["blogContent"], $row["blogDate"],  $row["blogTitle"]);
+				$blogs[$blogs->key()] = $blog;
+				$blogs->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($blogs);
+	}
+
+	/**
+	 * gets the blog by blog title
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $blogTitle blog title to search by
+	 * @return \SplFixedArray SplFixedArray of Blogs found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getBlogByBlogTitle(\PDO $pdo, string $blogTitle) : \SplFixedArray {
+		// sanitize the description before searching
+		$blogTitle = trim($blogTitle);
+		$blogTitle = filter_var($blogTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($blogTitle) === true) {
+			throw(new \PDOException("blog title is invalid"));
+		}
+
+// escape any mySQL wild cards
+		$blogTitle = str_replace("_", "\\_", str_replace("%", "\\%", $blogTitle));
+
+// create query template
+		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogContent FROM blog WHERE blogTitle = :blogTitlet";
+		$statement = $pdo->prepare($query);
+
+// bind the blog title content to the place holder in the template
+		$blogTitle = "%$blogTitle%";
+		$parameters = ["blogTitle" => $blogTitle];
+		$statement->execute($parameters);
+
+// build an array of blogs
 		$blogs = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
