@@ -186,6 +186,47 @@ class Clap implements \JsonSerializable {
 
 
 
+	/**
+	 * gets the Clap by clap id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $clapId clap id to search for
+	 * @return Blog|null Blog found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getBlogByBlogId(\PDO $pdo, $blogId) : ?Blog {
+		// sanitize the blogId before searching
+		try {
+			$blogId = self::validateUuid($blogId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT blogId, blogProfileId, blogContent, blogDate, blogTitle FROM blog WHERE blogId = :blogId";
+		$statement = $pdo->prepare($query);
+
+		// bind the blog id to the place holder in the template
+		$parameters = ["blogId" => $blogId->getBytes()];
+		$statement->execute($parameters);
+
+		// grab the blog from mySQL
+		try {
+			$blog = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$blog = new Blog($row["blogId"], $row["blogProfileId"], $row["blogContent"], $row["blogDate"],  $row["blogTitle"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($blog);
+	}
+
+
 
 
 	/**

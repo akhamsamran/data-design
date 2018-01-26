@@ -290,7 +290,7 @@ class blog implements \JsonSerializable {
 	 * gets the Blog by blog id
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param Uuid|string $tweetId tweet id to search for
+	 * @param Uuid|string $blogId blog id to search for
 	 * @return Blog|null Blog found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable are not the correct data type

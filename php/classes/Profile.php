@@ -364,6 +364,66 @@ class Profile implements \JsonSerializable {
 
 
 	/**
+	 * updates this Profile in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+
+		// create query template
+		$query = "UPDATE clap SET ProfileId = :ProfileId, profileAboutMe = :profileAboutMe, profileActivationToken =:profileActivationToken, profileEmail = :profileEmail, profileFirstName = :profileFirstName, profileHash = :profileHash, profileLastName = :profileLastName, profileSalt = :profileSalt WHERE ProfileId = :ProfileId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["profileId" => $this->profileId->getBytes()," profileAboutMe" =>$this->profileAboutMe, "profileActivationToken" => $this->profileActivationToken, "profileEmail" => $this->profileEmail, "profileFirstName" => $this->profileFirstName, profileHash => $this->profileHash, $this->profileLastName => $this->profileLastName, profileSalt => $this->profileSalt];
+		$statement->execute($parameters);
+	}
+
+
+	/**
+	 * gets the Profile by Profile id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $profileId profile id to search for
+	 * @return Blog|null Blog found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when a variable are not the correct data type
+	 **/
+	public static function getProfileByProfileId(\PDO $pdo, $profileId) : ?Profile {
+		// sanitize the profileId before searching
+		try {
+			$profileId = self::validateUuid($profileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT profileId, profileActivationToken, profileAboutMe, profileEmail, profileFirstName, profileHash, ProfileLastName, profileSalt FROM profile WHERE profileId = :profileId";
+		$statement = $pdo->prepare($query);
+
+		// bind the profile id to the place holder in the template
+		$parameters = ["profileId" => $profileId->getBytes()];
+		$statement->execute($parameters);
+
+		// grab the profile from mySQL
+		try {
+			$profile = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profile = new profile($row["profileId"], $row["profileActivationToken"], $row["profileAboutMe"], $row["profileEmail"],  $row["profileFirstName"], $row["profileHash"], $row["profileLastName"], $row["profileSalt"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($profile);
+	}
+
+
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
