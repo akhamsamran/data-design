@@ -11,11 +11,31 @@
 		<main>
 			<h1>Data Design</h1>
 			<p>1/10/2018 Anna Khamsamran</p>
+			<!--this <div> is for the screenshot of the Medium sample page-->
+			<div>
+				<h3>Screenshot of a Medium Post</h3>
+				<p>I have drawn an outline around the three entities that this page is based on:</p>
+				<ul>
+					<li>Profile: The writer of the articles and the people/users who give "claps" to other people's articles.</li>
+					<li>Article: These are the articles that people write, and that can get "claps".</li>
+					<li>Clap: These are the number of times one of the people with a profile "liked/clapped" for an article that some other person wrote.</li>
+				</ul>
+				<img src="images/mediumlizard.jpg" alt="screenshot of Medium post"/>
+
+			</div>
 			<!-- this <div> is to hold the Backend Entities/Attributes and keep it separate from the frontend stuff-->
 			<div>
 				<h2>Entities and Attributes</h2>
+				<h3><em>NOTES: This is the design for what we think needs to go into the database.
+						Databases are made up of Entities/Classes/Tables(although we use these interchangeably here, t
+						here are actually differences, but for now, just understand that we are talking about the
+						tables in a database when we use these words.  Entities have rows and columns, like in an excel spreadsheet.
+						Each individual row is actually a separate <strong>entity or object</strong>, created using the design
+						of the <strong>class/table</strong></em></h3>
 				<!--the <p> below is to enter information about what website/app this is about, or notes on the project-->
-				<p>Here is a first-attempt to grok <em>Medium</em> blog website</p>
+				<p>The entities/tables/classes for <em>Medium</em> blog website</p>
+				<p>In order to decide on these, we need to think about what sort of <em>attributes</em> do each of the <em>entities</em> need to be able to do in order for them to do<em>(methods)</em> what they do in the website</p>
+				<p>Data in Motion: we also need to decide which information is data in motion, which can be calculated from the data we are storing about the entities.</p>
 				<!--the entity tables below each have space for up to 10 attributes. In the case that there are less, rows can be deleted, but no more should be added to a table, as each entity should have not more than 10 attributes.  Copy and paste a whole table when more are needed, delete the ones that are not needed.-->
 				<hr/>
 				<table>
