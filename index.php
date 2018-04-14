@@ -29,8 +29,8 @@
 				<h3><em>NOTES: This is the design for what we think needs to go into the database.
 						Databases are made up of Entities/Classes/Tables(although we use these interchangeably here, t
 						here are actually differences, but for now, just understand that we are talking about the
-						tables in a database when we use these words.  Entities have rows and columns, like in an excel spreadsheet.
-						Each individual row is actually a separate <strong>entity or object</strong>, created using the design
+						tables in a database when we use these words.  Classes have rows and columns, like in an excel spreadsheet.
+						Each individual row is actually a separate <strong>"entity" or "object"</strong>, created using the design
 						of the <strong>class/table</strong></em></h3>
 				<!--the <p> below is to enter information about what website/app this is about, or notes on the project-->
 				<p>The entities/tables/classes for <em>Medium</em> blog website</p>
